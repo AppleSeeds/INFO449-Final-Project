@@ -10,6 +10,7 @@ import UIKit
 
 class FriendsCell: UITableViewCell {
 
+    @IBOutlet weak var name: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -88,23 +88,30 @@
                                             <outlet property="label" destination="hLb-uG-S6Q" id="MME-Sz-Hn6"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectedFriendsCell" id="GMv-XX-IMG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectedFriendsCell" id="GMv-XX-IMG" customClass="FriendsCell" customModule="EatWithFriends" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GMv-XX-IMG" id="0Tu-L7-1oM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btk-VA-GkM">
-                                                    <rect key="frame" x="311" y="6" width="51" height="31"/>
-                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmc-Fk-Wsf">
+                                                    <rect key="frame" x="15" y="11" width="345" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="btk-VA-GkM" secondAttribute="bottom" constant="6" id="HQa-Au-usJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="btk-VA-GkM" secondAttribute="trailing" constant="15" id="IqC-qq-ffb"/>
-                                                <constraint firstItem="btk-VA-GkM" firstAttribute="top" secondItem="0Tu-L7-1oM" secondAttribute="top" constant="6" id="LJ4-V3-2z8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qmc-Fk-Wsf" secondAttribute="trailing" id="COC-gU-0zs"/>
+                                                <constraint firstItem="Qmc-Fk-Wsf" firstAttribute="top" secondItem="0Tu-L7-1oM" secondAttribute="topMargin" id="YPL-HY-bCZ"/>
+                                                <constraint firstItem="Qmc-Fk-Wsf" firstAttribute="leading" secondItem="0Tu-L7-1oM" secondAttribute="leadingMargin" id="iAQ-gt-eMO"/>
+                                                <constraint firstItem="Qmc-Fk-Wsf" firstAttribute="bottom" secondItem="0Tu-L7-1oM" secondAttribute="bottomMargin" id="tcG-O6-Ltd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="Qmc-Fk-Wsf" id="qCl-vY-RnV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

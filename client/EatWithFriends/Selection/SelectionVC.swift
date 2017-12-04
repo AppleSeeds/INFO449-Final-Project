@@ -25,13 +25,22 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "SelectionCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SelectionCell else {
-            fatalError("The de-queued cell is not an instance of SelectionCell.")
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectionCell", for: indexPath) as? SelectionCell else {
+                fatalError("The de-queued cell is not an instance of SelectionCell.")
+            }
+            cell.label.adjustsFontSizeToFitWidth = true
+            cell.label.text = data[indexPath.section][indexPath.row]
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectedFriendsCell", for: indexPath) as? FriendsCell else {
+                fatalError("The de-queued cell is not an instance of SelectionCell.")
+            }
+            cell.name.adjustsFontSizeToFitWidth = true
+            cell.name.text = data[indexPath.section][indexPath.row]
+            return cell
         }
-        cell.label.adjustsFontSizeToFitWidth = true
-        cell.label.text = data[indexPath.section][indexPath.row]
-        return cell
+
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -42,22 +51,32 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sfvc") as! SearchFriendVC
-            score.modalPresentationStyle = .popover
-            if let pop = score.popoverPresentationController {
-                pop.delegate = self
-                pop.sourceView = tableView
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            let selectedCell = tableView.cellForRow(at: indexPath)
+            let selectedCellRect = selectedCell?.bounds
+            if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                    let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sfvc") as! SearchFriendVC
+                    score.modalPresentationStyle = .popover
+                    if let pop = score.popoverPresentationController {
+                        pop.delegate = self
+                        pop.permittedArrowDirections = .up
+                        pop.sourceView = selectedCell
+                        pop.sourceRect = selectedCellRect!
+                    }
+                    self.present(score, animated: true) { }
+                } else if indexPath.row == 1 {
+                    let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dvc") as! DummyVC
+                    score.modalPresentationStyle = .popover
+                    if let pop = score.popoverPresentationController {
+                        pop.permittedArrowDirections = .up
+                        pop.delegate = self
+                        pop.sourceView = selectedCell
+                        pop.sourceRect = selectedCellRect!
+                    }
+                    self.present(score, animated: true) { }
+                }
             }
-            self.present(score, animated: true) { }
-        } else if indexPath.row == 1 {
-            let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dvc") as! DummyVC
-            score.modalPresentationStyle = .popover
-            if let pop = score.popoverPresentationController {
-                pop.delegate = self
-                pop.sourceView = tableView
-            }
-            self.present(score, animated: true) { }
         }
     }
 
