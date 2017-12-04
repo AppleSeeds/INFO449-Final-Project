@@ -33,8 +33,8 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             cell.label.text = data[indexPath.section][indexPath.row]
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectedFriendsCell", for: indexPath) as? FriendsCell else {
-                fatalError("The de-queued cell is not an instance of SelectionCell.")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectedFriendsCell", for: indexPath) as? SelectedFriendsCell else {
+                fatalError("The de-queued cell is not an instance of SelectedFriendsCell.")
             }
             cell.name.adjustsFontSizeToFitWidth = true
             cell.name.text = data[indexPath.section][indexPath.row]
@@ -56,7 +56,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             let selectedCellRect = selectedCell?.bounds
             if indexPath.section == 0 {
                 if indexPath.row == 0 {
-                    let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sfvc") as! SearchFriendVC
+                    let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sfvc") as! SearchFriendsVC
                     score.modalPresentationStyle = .popover
                     if let pop = score.popoverPresentationController {
                         pop.delegate = self
