@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02F4F19B1FDD1E1A00B00DBB /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */; };
+		02F4F19D1FDD1E4600B00DBB /* PrefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */; };
 		F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */; };
 		F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07426B91FD58EFF00E69937 /* FriendsCell.swift */; };
 		F07426BC1FD5902000E69937 /* SearchFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07426BB1FD5902000E69937 /* SearchFriendsCell.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoCell.swift; path = EatWithFriends/Dummy/InfoCell.swift; sourceTree = SOURCE_ROOT; };
+		02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefCell.swift; sourceTree = "<group>"; };
 		F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
 		F07426B91FD58EFF00E69937 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		F07426BB1FD5902000E69937 /* SearchFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsCell.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		F07426BD1FD5908B00E69937 /* Dummy */ = {
 			isa = PBXGroup;
 			children = (
+				02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */,
+				02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */,
 				F077A6CC1FD53D0B0002A377 /* DummyVC.swift */,
 			);
 			path = Dummy;
@@ -218,11 +224,13 @@
 				F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */,
 				F077A6CD1FD53D0B0002A377 /* DummyVC.swift in Sources */,
 				F077A6D11FD53D9C0002A377 /* PersonalVC.swift in Sources */,
+				02F4F19D1FDD1E4600B00DBB /* PrefCell.swift in Sources */,
 				F077A6CB1FD53CE90002A377 /* SearchFriendsVC.swift in Sources */,
 				F0D6CEEB1FD53210003AFE5A /* MainVC.swift in Sources */,
 				F08F1AF41FC81B6200E005EC /* AppDelegate.swift in Sources */,
 				F07426BC1FD5902000E69937 /* SearchFriendsCell.swift in Sources */,
 				F0B06CBC1FD555D200751938 /* SelectedFriendsCell.swift in Sources */,
+				02F4F19B1FDD1E1A00B00DBB /* InfoCell.swift in Sources */,
 				F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */,
 				F077A6CF1FD53D690002A377 /* FriendsVC.swift in Sources */,
 				F08F1AFC1FC81B6200E005EC /* EatWithFriends.xcdatamodeld in Sources */,
