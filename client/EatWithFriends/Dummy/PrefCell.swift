@@ -1,14 +1,14 @@
 //
-//  SelectionCell.swift
+//  PrefCell.swift
 //  EatWithFriends
 //
-//  Created by ​ on 12/4/17.
+//  Created by 徐 翰洋 on 09/12/2017.
 //  Copyright © 2017 iGuest. All rights reserved.
 //
 
 import UIKit
 
-class SelectionCell: UITableViewCell {
+class PrefCell: UITableViewCell {
 
     @IBOutlet weak var label: UILabel!
     override func awakeFromNib() {
@@ -18,6 +18,7 @@ class SelectionCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
         // Configure the view for the selected state
     }
 

@@ -8,13 +8,20 @@
 
 import UIKit
 
-class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
+class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DummyViewControllerDelegate, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let data = [["Search for Friends", "Create a Dummy"], ["Friend One", "Friend Two", "Friend Three"]]
-    let titles = ["Section One", "Section Two"]
-
+    var data = [["Search for Friends", "Add a non-user"], []]
+    let titles = ["Add a Friend", "Added Friend"]
+    var addedFriend = [String]()
+    
+    // Append friend to addedFriend list
+    func appendFriend(friend: String) {
+        self.addedFriend.append(friend)
+        data[1] = self.addedFriend
+        self.tableView.reloadData()
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
@@ -67,6 +74,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                     self.present(score, animated: true) { }
                 } else if indexPath.row == 1 {
                     let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dvc") as! DummyVC
+                    score.delegate = self
                     score.modalPresentationStyle = .popover
                     if let pop = score.popoverPresentationController {
                         pop.permittedArrowDirections = .up
@@ -84,9 +92,13 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         return .none
     }
     
-
+    // Get request to server to get all his friend
+    func fetchAllFriends(){
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        data[1] = self.addedFriend
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.
@@ -97,7 +109,6 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -107,5 +118,4 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         // Pass the selected object to the new view controller.
     }
     */
-
 }

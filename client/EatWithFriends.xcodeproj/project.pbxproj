@@ -10,6 +10,8 @@
 		3753D8EE1FDCC9D900A1B9DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3753D8ED1FDCC9D900A1B9DD /* GoogleService-Info.plist */; };
 		37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E582781FDBB9DF00B61E86 /* LoginViewController.swift */; };
 		54ECBCC6762204BC08C53439 /* Pods_EatWithFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */; };
+		02F4F19B1FDD1E1A00B00DBB /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */; };
+		02F4F19D1FDD1E4600B00DBB /* PrefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */; };
 		F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */; };
 		F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07426B91FD58EFF00E69937 /* FriendsCell.swift */; };
 		F07426BC1FD5902000E69937 /* SearchFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07426BB1FD5902000E69937 /* SearchFriendsCell.swift */; };
@@ -32,6 +34,8 @@
 		37E582781FDBB9DF00B61E86 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatWithFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF4EE8F80C6FF1C1C849FEF1 /* Pods-EatWithFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatWithFriends.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends.debug.xcconfig"; sourceTree = "<group>"; };
+		02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoCell.swift; path = EatWithFriends/Dummy/InfoCell.swift; sourceTree = SOURCE_ROOT; };
+		02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefCell.swift; sourceTree = "<group>"; };
 		F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
 		F07426B91FD58EFF00E69937 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		F07426BB1FD5902000E69937 /* SearchFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsCell.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		F07426BD1FD5908B00E69937 /* Dummy */ = {
 			isa = PBXGroup;
 			children = (
+				02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */,
+				02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */,
 				F077A6CC1FD53D0B0002A377 /* DummyVC.swift */,
 			);
 			path = Dummy;
@@ -321,11 +327,13 @@
 				F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */,
 				F077A6CD1FD53D0B0002A377 /* DummyVC.swift in Sources */,
 				F077A6D11FD53D9C0002A377 /* PersonalVC.swift in Sources */,
+				02F4F19D1FDD1E4600B00DBB /* PrefCell.swift in Sources */,
 				F077A6CB1FD53CE90002A377 /* SearchFriendsVC.swift in Sources */,
 				F0D6CEEB1FD53210003AFE5A /* MainVC.swift in Sources */,
 				F08F1AF41FC81B6200E005EC /* AppDelegate.swift in Sources */,
 				F07426BC1FD5902000E69937 /* SearchFriendsCell.swift in Sources */,
 				F0B06CBC1FD555D200751938 /* SelectedFriendsCell.swift in Sources */,
+				02F4F19B1FDD1E1A00B00DBB /* InfoCell.swift in Sources */,
 				F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */,
 				F077A6CF1FD53D690002A377 /* FriendsVC.swift in Sources */,
 				37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */,
