@@ -7,17 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< Updated upstream
 		3753D8EE1FDCC9D900A1B9DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3753D8ED1FDCC9D900A1B9DD /* GoogleService-Info.plist */; };
 		37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E582781FDBB9DF00B61E86 /* LoginViewController.swift */; };
 		54ECBCC6762204BC08C53439 /* Pods_EatWithFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */; };
-=======
 		0206E5921FDDE005005D317B /* SearchFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E5911FDDE005005D317B /* SearchFoodVC.swift */; };
 		0206E5971FDDE78E005D317B /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E5961FDDE78E005D317B /* FoodCell.swift */; };
 		0206E59B1FDE4560005D317B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59A1FDE4560005D317B /* UserModel.swift */; };
 		0206E59E1FDE4E54005D317B /* SearchRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59D1FDE4E54005D317B /* SearchRestVC.swift */; };
 		0206E5A01FDE4F66005D317B /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59F1FDE4F66005D317B /* RestaurantCell.swift */; };
->>>>>>> Stashed changes
 		02F4F19B1FDD1E1A00B00DBB /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */; };
 		02F4F19D1FDD1E4600B00DBB /* PrefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */; };
 		F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */; };
@@ -38,18 +35,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-<<<<<<< Updated upstream
 		3753D8ED1FDCC9D900A1B9DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37E582781FDBB9DF00B61E86 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatWithFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF4EE8F80C6FF1C1C849FEF1 /* Pods-EatWithFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatWithFriends.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends.debug.xcconfig"; sourceTree = "<group>"; };
-=======
 		0206E5911FDDE005005D317B /* SearchFoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodVC.swift; sourceTree = "<group>"; };
 		0206E5961FDDE78E005D317B /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		0206E59A1FDE4560005D317B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0206E59D1FDE4E54005D317B /* SearchRestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestVC.swift; sourceTree = "<group>"; };
 		0206E59F1FDE4F66005D317B /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
->>>>>>> Stashed changes
 		02F4F19A1FDD1E1A00B00DBB /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoCell.swift; path = EatWithFriends/Dummy/InfoCell.swift; sourceTree = SOURCE_ROOT; };
 		02F4F19C1FDD1E4600B00DBB /* PrefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefCell.swift; sourceTree = "<group>"; };
 		F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
@@ -84,7 +78,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< Updated upstream
 		37E582751FDBB3FC00B61E86 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +101,6 @@
 				94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */,
 			);
 			name = Frameworks;
-=======
 		0206E5951FDDE0B9005D317B /* SearchFood */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,7 +117,6 @@
 				0206E59F1FDE4F66005D317B /* RestaurantCell.swift */,
 			);
 			path = SearchRest;
->>>>>>> Stashed changes
 			sourceTree = "<group>";
 		};
 		F04009AC1FD54C2A00BC2B3D /* Selection */ = {
