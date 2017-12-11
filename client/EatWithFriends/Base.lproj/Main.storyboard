@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aa2-Wj-JJp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cnz-CP-7CZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -221,7 +221,7 @@
                                 <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="GHS-hn-Tbe" customClass="SearchFriendsCell" customModule="EatWithFriends" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="GHS-hn-Tbe" customClass="SearchFriendsCell" customModule="EatWithFriends" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GHS-hn-Tbe" id="kJb-r3-Erf">
@@ -285,13 +285,13 @@
         <!--Login View Controller-->
         <scene sceneID="bFb-QH-bq5">
             <objects>
-                <viewController id="cnz-CP-7CZ" customClass="LoginViewController" customModule="EatWithFriends" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="cnz-CP-7CZ" customClass="LoginViewController" customModule="EatWithFriends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I7W-pP-pxo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZM-pu-aWa">
-                                <rect key="frame" x="34" y="516" width="363" height="21"/>
+                                <rect key="frame" x="57" y="516" width="265" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -314,7 +314,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="j0I-PA-hEK">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="aa2-Wj-JJp" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="aa2-Wj-JJp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XUX-Pj-x10">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -324,7 +324,7 @@
                     <connections>
                         <segue destination="26x-mV-9WQ" kind="relationship" relationship="viewControllers" id="QZA-cl-vWc"/>
                         <segue destination="iFQ-Zs-vgP" kind="relationship" relationship="viewControllers" id="BBY-xN-Glr"/>
-                        <segue destination="RYU-hg-XHz" kind="relationship" relationship="viewControllers" id="1ub-Jq-6hX"/>
+                        <segue destination="bpl-p9-9Nu" kind="relationship" relationship="viewControllers" id="1ub-Jq-6hX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDA-PX-ufF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -392,7 +392,6 @@
         <!--View Controller-->
         <scene sceneID="adE-C4-xdE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hXd-ml-slt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="R3O-G9-Nal" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ap9-d6-KK9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -401,29 +400,89 @@
                         <viewLayoutGuide key="safeArea" id="shc-QX-qyO"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hXd-ml-slt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1321" y="-63"/>
         </scene>
-        <!--third-->
+        <!--PersonalVC-->
         <scene sceneID="AfB-C3-89f">
             <objects>
                 <viewController storyboardIdentifier="pvc" id="RYU-hg-XHz" customClass="PersonalVC" customModule="EatWithFriends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y48-6N-TIh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w55-En-wen">
+                                <rect key="frame" x="30" y="94" width="315" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please choose flavor you like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-Q4-hvf">
+                                <rect key="frame" x="51" y="224" width="255" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please choose flavor you don't like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMh-LP-NBJ">
+                                <rect key="frame" x="51" y="297" width="308" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please choose restaurant you like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POT-L0-AI7">
+                                <rect key="frame" x="51" y="366" width="278" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please choose restaurant you don't like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luQ-mC-O3Z">
+                                <rect key="frame" x="51" y="438" width="308" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please setup your preferences" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKT-E7-gnv">
+                                <rect key="frame" x="10" y="128" width="355" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCg-nc-pzo">
+                                <rect key="frame" x="240" y="544" width="119" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save preferences"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="l0k-u0-aty" firstAttribute="trailing" secondItem="BKT-E7-gnv" secondAttribute="trailing" constant="10" id="C8B-vV-SUn"/>
+                            <constraint firstItem="BKT-E7-gnv" firstAttribute="leading" secondItem="l0k-u0-aty" secondAttribute="leading" constant="10" id="HQU-B0-8b1"/>
+                            <constraint firstItem="l0k-u0-aty" firstAttribute="trailing" secondItem="w55-En-wen" secondAttribute="trailing" constant="30" id="IZt-Es-5J3"/>
+                            <constraint firstItem="BKT-E7-gnv" firstAttribute="top" secondItem="w55-En-wen" secondAttribute="bottom" constant="10" id="aVt-iU-Drm"/>
+                            <constraint firstItem="w55-En-wen" firstAttribute="top" secondItem="l0k-u0-aty" secondAttribute="top" constant="30" id="efN-gN-uW0"/>
+                            <constraint firstItem="w55-En-wen" firstAttribute="leading" secondItem="l0k-u0-aty" secondAttribute="leading" constant="30" id="p7a-ck-8eb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="l0k-u0-aty"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="third" image="user_male" id="eJs-AG-5bd"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="zze-QS-5uI"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="w55-En-wen" id="4R5-uK-IaT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Igd-UZ-b4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="713"/>
+            <point key="canvasLocation" x="1320.8" y="760.56971514242889"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zHn-Y5-IBI">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g5B-Cd-UPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FJ4-g3-cej" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LmX-KT-NGm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -432,13 +491,13 @@
                         <viewLayoutGuide key="safeArea" id="KZw-Jk-8gW"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g5B-Cd-UPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="713"/>
+            <point key="canvasLocation" x="2023" y="712"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dnW-s0-25F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T16-Jf-UJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="BMg-H8-Mav" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9XX-Wm-W8X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -447,8 +506,9 @@
                         <viewLayoutGuide key="safeArea" id="C4P-PW-398"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T16-Jf-UJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153" y="713"/>
+            <point key="canvasLocation" x="2703" y="701"/>
         </scene>
         <!--first-->
         <scene sceneID="N7k-xR-WvC">
@@ -468,6 +528,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ucw-6E-MNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="555.20000000000005" y="-755.62218890554732"/>
+        </scene>
+        <!--third-->
+        <scene sceneID="TQ5-Vl-X1S">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ujf-Zv-yuD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bpl-p9-9Nu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="third" image="user_male" id="eJs-AG-5bd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xhp-V5-i4e">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RYU-hg-XHz" kind="relationship" relationship="rootViewController" id="8h6-1H-Ufy"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="556" y="761"/>
         </scene>
     </scenes>
     <resources>

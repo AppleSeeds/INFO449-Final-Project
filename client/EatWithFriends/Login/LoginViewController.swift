@@ -9,12 +9,12 @@
 import UIKit
 import GoogleSignIn
 //import Google
-
+//protocol DataSentDelegate {
+//    func userDidLogin(data: String)
+//}
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
-
-    
-    
+    //var delegate: DataSentDelegate? = nil
     @IBOutlet weak var emailLabel: UILabel!
     //    let inputsContainerView: UIView = {
 //        let view = UIView()
@@ -42,7 +42,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
             return
         }
         let clientID = "316572482051-46gf7rla0pe1acil60122dta9eoee4f9.apps.googleusercontent.com"
-        //GGLContext.sharedInstance().configureWithError(&error)
         GIDSignIn.sharedInstance().clientID = clientID
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
@@ -50,8 +49,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         let signInButton = GIDSignInButton()
         signInButton.center = view.center
         view.addSubview(signInButton)
-        
-        print("signInButton setup finished!")
         view.backgroundColor = UIColor.white
         //view.addSubview(inputsContainerView)
         //view.addSubview(loginRegisterButton)
@@ -72,18 +69,34 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
 //    }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        let userId = user.userID                  // For client-side use only!
-        let idToken = user.authentication.idToken // Safe to send to the server
-        let fullName = user.profile.name
-        let givenName = user.profile.givenName
-        let familyName = user.profile.familyName
-        let email = user.profile.email
+        //when login successfully, get the user's firstname and go to next screen
+        if(error == nil){
+//        let userId = user.userID;
+//        let idToken = user.authentication.idToken;
+          let firstName = user.profile.givenName;
+//        let email = user.profile.email
+            
+          emailLabel.text = "Welcome! "+firstName!
+            let storyboard = UIStoryboard(name:"Main", bundle:nil)
+            let logInNextScreen = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = logInNextScreen
+            //performSegue(withIdentifier: "loginToTabBarVCSegue", sender: self)
+            GlobalVariable.myString = emailLabel.text!
+        }else{
+            print(error!.localizedDescription)
+            return
+        }
 
-        emailLabel.text = email
-        print(userId)
-        print(idToken)
-        print(fullName)
     }
+    struct GlobalVariable {
+        static var myString = String()
+        
+    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        var personalVC = segue.destination as! PersonalVC
+//        personalVC.welcomeText = emailLabel.text!
+//    }
     
     func setupLoginRegisterButton(){
         

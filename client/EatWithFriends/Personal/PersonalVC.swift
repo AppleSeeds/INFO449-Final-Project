@@ -7,29 +7,34 @@
 //
 
 import UIKit
+import GoogleSignIn
+class PersonalVC: UIViewController{
+    var welcomeText = ""
+    @IBOutlet weak var welcomeLabel: UILabel!
 
-class PersonalVC: UIViewController {
+
+
+    
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(PersonalVC.logOut))
+        
+        welcomeText = LoginViewController.GlobalVariable.myString
+        welcomeLabel.text = welcomeText
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func logOut(){
+        GIDSignIn.sharedInstance().signOut()
+        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+        let logOutNextScreen = storyboard.instantiateViewController(withIdentifier: "loginVC")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = logOutNextScreen
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
