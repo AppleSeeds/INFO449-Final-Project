@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3753D8EE1FDCC9D900A1B9DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3753D8ED1FDCC9D900A1B9DD /* GoogleService-Info.plist */; };
+		37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E582781FDBB9DF00B61E86 /* LoginViewController.swift */; };
+		54ECBCC6762204BC08C53439 /* Pods_EatWithFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */; };
 		F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */; };
 		F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07426B91FD58EFF00E69937 /* FriendsCell.swift */; };
 		F07426BC1FD5902000E69937 /* SearchFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07426BB1FD5902000E69937 /* SearchFriendsCell.swift */; };
@@ -25,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3753D8ED1FDCC9D900A1B9DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37E582781FDBB9DF00B61E86 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatWithFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF4EE8F80C6FF1C1C849FEF1 /* Pods-EatWithFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatWithFriends.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends.debug.xcconfig"; sourceTree = "<group>"; };
 		F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
 		F07426B91FD58EFF00E69937 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		F07426BB1FD5902000E69937 /* SearchFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsCell.swift; sourceTree = "<group>"; };
@@ -42,6 +49,7 @@
 		F0B06CBB1FD555D200751938 /* SelectedFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFriendsCell.swift; sourceTree = "<group>"; };
 		F0D6CEEA1FD53210003AFE5A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		F0D6CEEC1FD5326E003AFE5A /* SelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionVC.swift; sourceTree = "<group>"; };
+		FA7559BF6D8030977DCDCB6B /* Pods-EatWithFriends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatWithFriends.release.xcconfig"; path = "Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,12 +57,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54ECBCC6762204BC08C53439 /* Pods_EatWithFriends.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37E582751FDBB3FC00B61E86 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				37E582781FDBB9DF00B61E86 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A64B0D41E92F5C811B4EEE42 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF4EE8F80C6FF1C1C849FEF1 /* Pods-EatWithFriends.debug.xcconfig */,
+				FA7559BF6D8030977DCDCB6B /* Pods-EatWithFriends.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E5F707D14CBFCB97FFA658CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F04009AC1FD54C2A00BC2B3D /* Selection */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +146,8 @@
 			children = (
 				F08F1AF21FC81B6200E005EC /* EatWithFriends */,
 				F08F1AF11FC81B6200E005EC /* Products */,
+				A64B0D41E92F5C811B4EEE42 /* Pods */,
+				E5F707D14CBFCB97FFA658CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +162,7 @@
 		F08F1AF21FC81B6200E005EC /* EatWithFriends */ = {
 			isa = PBXGroup;
 			children = (
+				37E582751FDBB3FC00B61E86 /* Login */,
 				F08F1AF31FC81B6200E005EC /* AppDelegate.swift */,
 				F08F1AF71FC81B6200E005EC /* Main.storyboard */,
 				F07426BF1FD590CB00E69937 /* Main */,
@@ -138,6 +175,7 @@
 				F08F1AFF1FC81B6200E005EC /* LaunchScreen.storyboard */,
 				F08F1B021FC81B6200E005EC /* Info.plist */,
 				F08F1AFA1FC81B6200E005EC /* EatWithFriends.xcdatamodeld */,
+				3753D8ED1FDCC9D900A1B9DD /* GoogleService-Info.plist */,
 			);
 			path = EatWithFriends;
 			sourceTree = "<group>";
@@ -149,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F08F1B051FC81B6200E005EC /* Build configuration list for PBXNativeTarget "EatWithFriends" */;
 			buildPhases = (
+				EBC54E4213D67194E3BB5571 /* [CP] Check Pods Manifest.lock */,
 				F08F1AEC1FC81B6200E005EC /* Sources */,
 				F08F1AED1FC81B6200E005EC /* Frameworks */,
 				F08F1AEE1FC81B6200E005EC /* Resources */,
+				9C1AEFB57D50888DC8C46046 /* [CP] Embed Pods Frameworks */,
+				58EC945B9363508736DFF784 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,12 +243,74 @@
 			buildActionMask = 2147483647;
 			files = (
 				F08F1B011FC81B6200E005EC /* LaunchScreen.storyboard in Resources */,
+				3753D8EE1FDCC9D900A1B9DD /* GoogleService-Info.plist in Resources */,
 				F08F1AFE1FC81B6200E005EC /* Assets.xcassets in Resources */,
 				F08F1AF91FC81B6200E005EC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		58EC945B9363508736DFF784 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C1AEFB57D50888DC8C46046 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBC54E4213D67194E3BB5571 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EatWithFriends-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F08F1AEC1FC81B6200E005EC /* Sources */ = {
@@ -225,6 +328,7 @@
 				F0B06CBC1FD555D200751938 /* SelectedFriendsCell.swift in Sources */,
 				F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */,
 				F077A6CF1FD53D690002A377 /* FriendsVC.swift in Sources */,
+				37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */,
 				F08F1AFC1FC81B6200E005EC /* EatWithFriends.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,11 +464,13 @@
 		};
 		F08F1B061FC81B6200E005EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF4EE8F80C6FF1C1C849FEF1 /* Pods-EatWithFriends.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MGH6F4S7LB;
+				DEVELOPMENT_TEAM = 975HC67AXN;
 				INFOPLIST_FILE = EatWithFriends/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.appleseeds.final.EatWithFriends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -375,11 +481,13 @@
 		};
 		F08F1B071FC81B6200E005EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA7559BF6D8030977DCDCB6B /* Pods-EatWithFriends.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MGH6F4S7LB;
+				DEVELOPMENT_TEAM = 975HC67AXN;
 				INFOPLIST_FILE = EatWithFriends/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.appleseeds.final.EatWithFriends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
