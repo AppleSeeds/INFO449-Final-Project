@@ -1,17 +1,16 @@
 //
-//  PrefCell.swift
+//  RestaurantCell.swift
 //  EatWithFriends
 //
-//  Created by 徐 翰洋 on 09/12/2017.
+//  Created by 徐 翰洋 on 10/12/2017.
 //  Copyright © 2017 iGuest. All rights reserved.
 //
 
 import UIKit
 
-class PrefCell: UITableViewCell {
+class RestaurantCell: UITableViewCell {
 
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var itemList: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
