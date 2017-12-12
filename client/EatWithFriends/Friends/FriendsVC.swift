@@ -13,6 +13,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var tableView: UITableView!
     var userSelf: SelfMode?
     
+    // Not correct
     @IBAction func AddFriend(_ sender: Any) {
         let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newfriendvc") as! AddFriendViewController
         score.modalPresentationStyle = .popover
