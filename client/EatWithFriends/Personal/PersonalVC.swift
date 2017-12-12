@@ -21,7 +21,7 @@ class PersonalVC: UIViewController{
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(PersonalVC.logOut))
         
-        welcomeText = LoginViewController.GlobalVariable.myString
+        welcomeText = LoginViewController.GlobalVariable.myFirstName
         welcomeLabel.text = welcomeText
         
         

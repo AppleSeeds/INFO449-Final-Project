@@ -29,7 +29,7 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! InfoCell
-        if (cell.textField.text != nil) {
+        if (cell.textField.text != nil && cell.textField.text != "") {
             let user = User(name: cell.textField.text!, foodLiked: self.foodLiked, foodHated: self.foodHated, restLiked: self.restLiked, restHated: self.restHated)
             self.addedFriend = user // prepare the user struct to be added in selectionVC
         }

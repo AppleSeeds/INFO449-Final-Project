@@ -507,7 +507,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="j0I-PA-hEK">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="aa2-Wj-JJp" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="aa2-Wj-JJp" customClass="tabBarController" customModule="EatWithFriends" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XUX-Pj-x10">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

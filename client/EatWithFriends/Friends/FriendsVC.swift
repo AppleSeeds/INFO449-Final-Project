@@ -11,12 +11,21 @@ import UIKit
 class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     @IBOutlet weak var tableView: UITableView!
+    var userSelf: SelfMode?
     
+    /*
     let words = ["Allen", "Alala", "Bob", "Bulala", "Cat", "Dog", "Ellen", "Frank", "George", "Happy", "Machaosb", "Allen", "Alala", "Bob", "Bulala", "Cat", "Dog", "Ellen", "Frank", "George", "Happy", "Machaosb", "Allen", "Alala", "Bob", "Bulala", "Cat", "Dog", "Ellen", "Frank", "George", "Happy", "Machaosb", "&*(&*&^", "张爱猴"]
+    */
+    var words = [String]()
     var wordsSection = [String]()
     var wordsDict = [String:[String]]()
     
     func generateWordsDict() {
+        let globelSelf = self.tabBarController as! tabBarController
+        if (globelSelf.userSelf != nil) {
+            self.userSelf = globelSelf.userSelf
+        }
+        words = getNameList(userList: (self.userSelf?.getFetchedFriend())!)
         for word in words {
             let key = "\(word[word.startIndex])"
             let upper = key.uppercased()
@@ -31,6 +40,15 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         
         wordsSection = [String](wordsDict.keys)
         wordsSection = wordsSection.sorted()
+    }
+    
+    // Get all names from the user list
+    private func getNameList(userList: [User]) -> [String] {
+        var result = [String]()
+        for user in userList {
+            result.append(user.name)
+        }
+        return result
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
