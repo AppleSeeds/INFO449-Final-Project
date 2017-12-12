@@ -12,8 +12,11 @@ class PersonalVC: UIViewController{
     var welcomeText = ""
 
     
+    // Important! Check out SelfModel
+    var userSelf: SelfMode?  // get user data from this!!!!
+    
     @IBOutlet weak var welcomeLabel: UILabel!
-
+    
     @IBOutlet weak var flavorLike: UITextView!
     @IBOutlet weak var flavorDontLike: UITextView!
     @IBOutlet weak var restLike: UITextView!
@@ -45,11 +48,14 @@ class PersonalVC: UIViewController{
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        let globelSelf = self.tabBarController as! tabBarController
+        self.userSelf = globelSelf.userSelf // assign the gobel model: userself
+        // you can get all data about user from here
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(PersonalVC.logOut))
         
-        welcomeText = LoginViewController.GlobalVariable.myString
+        welcomeText = LoginViewController.GlobalVariable.myFirstName
         welcomeLabel.text = welcomeText
         
         //get the user choice result from the global variable, and put all items together as a string, separated by comma, and set the result string to the TextView.

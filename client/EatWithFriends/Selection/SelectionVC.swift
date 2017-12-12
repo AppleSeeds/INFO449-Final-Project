@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,  UIPopoverPresentationControllerDelegate {
     
@@ -14,24 +15,48 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     var data = [["Search for Friends", "Add a non-user"], []]
     let titles = ["Add a Friend", "Added Friend"]
+    var userSelf: SelfMode?
+    
     var addedFriend = [User]()
     var fetchedFriend = [User]()
+    
+    var foodLiked = [String]()
+    var foodHated = [String]()
+    var restLiked = [Restaurant]()
+    var restHated = [Restaurant]()
+    
+    var restList = [Restaurant]()
     
     // Append friend to addedFriend list
     @IBAction func unwindFromAddDummyVC(segue: UIStoryboardSegue) {
         let senderVC = segue.source as? DummyVC
-        addedFriend.append((senderVC?.addedFriend)!)
-        data[1] = getNameList(userList: addedFriend)
+        if (senderVC?.addedFriend != nil) {
+            addedFriend.append((senderVC?.addedFriend)!)
+            data[1] = getNameList(userList: addedFriend)
+        }
         tableView.reloadData()
     }
     
     @IBAction func unwindFromSearchFriendVC(segue: UIStoryboardSegue) {
         let senderVC = segue.source as? SearchFriendsVC
         if (senderVC?.addedFriend != nil) {
-            self.addedFriend += (senderVC?.addedFriend)!
+            for friend in (senderVC?.addedFriend)! {
+                if (!isAddedFriend(name: friend.name)) {
+                    self.addedFriend.append(friend)
+                }
+            }
         }
         data[1] = getNameList(userList: addedFriend)
         tableView.reloadData()
+    }
+    
+    private func isAddedFriend(name: String) -> Bool {
+        for friend in addedFriend {
+            if friend.name == name {
+                return true
+            }
+        }
+        return false
     }
     
     // Get all names from the user list
@@ -84,32 +109,8 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             // let selectedCellRect = selectedCell?.bounds
             if indexPath.section == 0 {
                 if indexPath.row == 0 {
-                    /*
-                    let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sfvc") as! SearchFriendsVC
-                    
-                    score.modalPresentationStyle = .popover
-                    if let pop = score.popoverPresentationController {
-                        pop.delegate = self
-                        pop.permittedArrowDirections = .up
-                        pop.sourceView = selectedCell
-                        pop.sourceRect = selectedCellRect!
-                    }
-                    self.present(score, animated: true) { }
-                    */
                     self.performSegue(withIdentifier: "toAddFriend", sender: nil)
                 } else if indexPath.row == 1 {
-                    /*
-                    let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dvc") as! DummyVC
-                    score.delegate = self
-                    score.modalPresentationStyle = .popover
-                    if let pop = score.popoverPresentationController {
-                        pop.permittedArrowDirections = .up
-                        pop.delegate = self
-                        pop.sourceView = selectedCell
-                        pop.sourceRect = selectedCellRect!
-                    }
-                    self.present(score, animated: true) { }
-                    */
                     self.performSegue(withIdentifier: "toAddDummy", sender: nil)
                 }
             }
@@ -124,41 +125,34 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         if let destinationViewController = segue.destination as? SearchFriendsVC {
             destinationViewController.friendList = self.fetchedFriend
         }
+        
+        if let destinationViewController = segue.destination as? DummyVC {
+            destinationViewController.restList = self.restList
+        }
     }
     
     // Get request to server to get all his friend
-    func fetchAllFriends(){
-        let A = User(name: "A", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        let B = User(name: "B", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        let C = User(name: "C", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        let D = User(name: "D", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        
-        fetchedFriend.append(A)
-        fetchedFriend.append(B)
-        fetchedFriend.append(C)
-        fetchedFriend.append(D)
+    func fetchAllFriends(){        
+        userSelf = SelfMode()
+        let globelSelf = self.tabBarController as! tabBarController
+        globelSelf.userSelf = self.userSelf
+        self.fetchedFriend = (self.userSelf?.getFetchedFriend())!
+        self.foodLiked = (self.userSelf?.getFoodLiked())!
+        self.foodHated = (self.userSelf?.getFoodHated())!
+        self.restLiked = (self.userSelf?.getRestLiked())!
+        self.restHated = (self.userSelf?.getRestHated())!
+        self.restList = (self.userSelf?.getRestList())!
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllFriends()
         tableView.dataSource = self
         tableView.delegate = self
-        // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

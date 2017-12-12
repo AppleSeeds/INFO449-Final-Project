@@ -9,13 +9,13 @@
 import UIKit
 
 protocol SearchRestViewControllerDelegate {
-    func appendRestSelected(restList : [String])
+    func appendRestSelected(restList : [Restaurant])
 }
 
 class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    var restList = ["A", "B", "C", "R1", "R2", "R3" ]
-    var restSelected = [String]()
+    var restList = [Restaurant]()
+    var restSelected = [Restaurant]()
     var delegate: SearchRestViewControllerDelegate?
     
     var isSearching = false
@@ -48,14 +48,16 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if isSearching {
             cell.label.text = fileredList[indexPath.row]
         } else {
-            cell.label.text = restList[indexPath.row]
+            cell.label.text = restList[indexPath.row].name
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let restSelectedString = restListToStringList(restList: restSelected)
+        
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            if !restSelected.contains(restList[indexPath.row]) {
+            if !restSelectedString.contains(restList[indexPath.row].name) {
                 restSelected.append(restList[indexPath.row])
             }
             let currentCell = tableView.cellForRow(at: indexPath) as! RestaurantCell
@@ -64,14 +66,23 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let restListString = restListToStringList(restList: restList)
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             view.endEditing(true)
         } else {
             isSearching = true
-            fileredList = restList.filter({$0 == searchBar.text})
+            fileredList = restListString.filter({$0 == searchBar.text})
         }
         tableView.reloadData()
+    }
+    
+    private func restListToStringList(restList: [Restaurant]) -> [String] {
+        var result = [String]()
+        for rest in restList {
+            result.append(rest.name)
+        }
+        return result
     }
 
     override func viewDidLoad() {
