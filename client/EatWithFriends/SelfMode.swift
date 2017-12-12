@@ -75,7 +75,6 @@ class SelfMode {
                         self.buildSelf(json: json)
                         print(self.name)
                         print(self.id)
-                        print(self)
                     } catch {
                         print (error)
                     }
