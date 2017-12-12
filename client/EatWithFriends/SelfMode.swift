@@ -9,23 +9,23 @@
 import Foundation
 
 class SelfMode {
-    private var allUsers = [User]()
-    private var name: String?
-    private var id: String?
+    var allUsers = [User]()
+    var name: String?
+    var id: String?
     
-    private var fetchedFriend = [User]()
-    private var fetchedFriendString = [String]()
+    var fetchedFriend = [User]()
+    var fetchedFriendString = [String]()
     
-    private var foodLiked = [String]()
-    private var foodHated = [String]()
-    private var restLiked = [Restaurant]()
-    private var restHated = [Restaurant]()
-    private var restList = [Restaurant]() // All of restaurant
-    
-    private var isRegistered = false
+    var foodLiked = [String]()
+    var foodHated = [String]()
+    var restLiked = [Restaurant]()
+    var restHated = [Restaurant]()
+    var restList = [Restaurant]() // All of restaurant
+    var isRegistered = false
 
     init() {
         makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        print(restList)
         self.name = LoginViewController.GlobalVariable.myFirstName
         self.id = LoginViewController.GlobalVariable.myUserId
     
@@ -34,7 +34,7 @@ class SelfMode {
         let C = User(name: "C", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
         let D = User(name: "D", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
         
-        self.makeGetUserRequest(url: "https://info449.com/users-info449")
+        //makeGetUserRequest(url: "https://info449.com/users-info449")
         fetchedFriend.append(A)
         fetchedFriend.append(B)
         fetchedFriend.append(C)
@@ -138,7 +138,7 @@ class SelfMode {
             }
         }
         if (isRegistered) {
-            self.fetchedFriend += findFriend(friendString: fetchedFriendString)
+            self.fetchedFriend = findFriend(friendString: fetchedFriendString)
         } else {
             self.fetchedFriendString = [String]()
             self.foodLiked = [String]()
@@ -236,16 +236,16 @@ class SelfMode {
                      "friend_list":[
                         ""
                      ],
-                     "preference":[
-                        "categories":[
+                     "preference": [
+                        ["categories":[
                             "cat_like":[
                                 ""
                             ],
                             "cat_dislike":[
                                 ""
                             ]
-                        ],
-                        "restaurants":[
+                        ],],
+                        ["restaurants":[
                                 "res_like": [
                                     ""
                                 ],
@@ -259,7 +259,7 @@ class SelfMode {
                                     ""
                                 ]
                             ]
-                        ]
+                        ]]
                     ] as [String : Any]
         
         guard let url = URL(string: url) else { return }

@@ -143,14 +143,14 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.restHated = (self.userSelf?.getRestHated())!
         self.restList = (self.userSelf?.getRestList())!
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllFriends()
         tableView.dataSource = self
         tableView.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

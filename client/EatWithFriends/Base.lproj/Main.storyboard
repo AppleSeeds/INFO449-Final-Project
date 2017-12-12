@@ -545,7 +545,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pee-w2-zdu">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendsCell" id="tgG-Ys-2hg" customClass="FriendsCell" customModule="EatWithFriends" customModuleProvider="target">
@@ -575,13 +575,35 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CoP-hN-R0i">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="Vfd-ao-STp">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="rQs-iQ-wxd">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hs2-uY-4K5" userLabel="Add Friend">
+                                                <rect key="frame" x="209" y="0.0" width="150" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Add Friend"/>
+                                                <connections>
+                                                    <action selector="AddFriend:" destination="iFQ-Zs-vgP" eventType="touchUpInside" id="rt3-mm-vuv"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="CoP-hN-R0i" firstAttribute="top" secondItem="6os-1w-ejR" secondAttribute="top" id="1Cg-S9-N62"/>
                             <constraint firstItem="Pee-w2-zdu" firstAttribute="leading" secondItem="obu-yK-qCx" secondAttribute="leading" id="5CF-HP-O2W"/>
+                            <constraint firstItem="CoP-hN-R0i" firstAttribute="trailing" secondItem="obu-yK-qCx" secondAttribute="trailing" id="9XJ-fB-f6s"/>
                             <constraint firstItem="Pee-w2-zdu" firstAttribute="trailing" secondItem="obu-yK-qCx" secondAttribute="trailing" id="CfY-zR-iQK"/>
                             <constraint firstItem="Pee-w2-zdu" firstAttribute="bottom" secondItem="obu-yK-qCx" secondAttribute="bottom" id="LFo-zg-8GN"/>
-                            <constraint firstItem="Pee-w2-zdu" firstAttribute="top" secondItem="6os-1w-ejR" secondAttribute="top" id="N83-7D-UVW"/>
+                            <constraint firstItem="Pee-w2-zdu" firstAttribute="top" secondItem="6os-1w-ejR" secondAttribute="top" constant="44" id="N83-7D-UVW"/>
+                            <constraint firstItem="Pee-w2-zdu" firstAttribute="top" secondItem="CoP-hN-R0i" secondAttribute="bottom" id="OZT-u6-EKW"/>
+                            <constraint firstItem="CoP-hN-R0i" firstAttribute="leading" secondItem="obu-yK-qCx" secondAttribute="leading" id="lf9-6R-qBG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="obu-yK-qCx"/>
                     </view>
@@ -799,6 +821,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T16-Jf-UJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2703" y="701"/>
+        </scene>
+        <!--Add Friend View Controller-->
+        <scene sceneID="0fZ-Z7-WsS">
+            <objects>
+                <viewController storyboardIdentifier="newfriendvc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="02A-7z-N7g" customClass="AddFriendViewController" customModule="EatWithFriends" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="12M-4s-GGj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9g4-3e-8IM">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="I2G-eh-qc3"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9g4-3e-8IM" firstAttribute="trailing" secondItem="VPh-AB-3ef" secondAttribute="trailing" id="ExE-Ny-Vs5"/>
+                            <constraint firstItem="9g4-3e-8IM" firstAttribute="leading" secondItem="VPh-AB-3ef" secondAttribute="leading" id="Yqt-E9-9jT"/>
+                            <constraint firstItem="9g4-3e-8IM" firstAttribute="bottom" secondItem="VPh-AB-3ef" secondAttribute="bottom" id="thK-wb-Vt0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VPh-AB-3ef"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GSQ-a8-Cvz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-223" y="-756"/>
         </scene>
         <!--first-->
         <scene sceneID="N7k-xR-WvC">

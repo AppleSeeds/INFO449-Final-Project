@@ -13,6 +13,7 @@
 		0206E59E1FDE4E54005D317B /* SearchRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59D1FDE4E54005D317B /* SearchRestVC.swift */; };
 		0206E5A01FDE4F66005D317B /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59F1FDE4F66005D317B /* RestaurantCell.swift */; };
 		021179BE1FDFC3F600F213B1 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021179BD1FDFC3F600F213B1 /* RestaurantModel.swift */; };
+		0286A3551FDFEBFC00329D46 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */; };
 		0291457B1FDF773400FF400E /* SelfMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291457A1FDF773400FF400E /* SelfMode.swift */; };
 		0291457D1FDF7CCF00FF400E /* tabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291457C1FDF7CCF00FF400E /* tabBarController.swift */; };
 		0291457F1FDF80A900FF400E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291457E1FDF80A900FF400E /* Reachability.swift */; };
@@ -45,6 +46,7 @@
 		0206E59D1FDE4E54005D317B /* SearchRestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestVC.swift; sourceTree = "<group>"; };
 		0206E59F1FDE4F66005D317B /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		021179BD1FDFC3F600F213B1 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		0291457A1FDF773400FF400E /* SelfMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfMode.swift; sourceTree = "<group>"; };
 		0291457C1FDF7CCF00FF400E /* tabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarController.swift; sourceTree = "<group>"; };
 		0291457E1FDF80A900FF400E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = EatWithFriends/Reachability.swift; sourceTree = SOURCE_ROOT; };
@@ -102,6 +104,14 @@
 				0206E59F1FDE4F66005D317B /* RestaurantCell.swift */,
 			);
 			path = SearchRest;
+			sourceTree = "<group>";
+		};
+		0286A3561FDFEC1500329D46 /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */,
+			);
+			path = AddFriend;
 			sourceTree = "<group>";
 		};
 		37E582751FDBB3FC00B61E86 /* Login */ = {
@@ -213,6 +223,7 @@
 				0291457C1FDF7CCF00FF400E /* tabBarController.swift */,
 				37E582751FDBB3FC00B61E86 /* Login */,
 				F07426BF1FD590CB00E69937 /* Main */,
+				0286A3561FDFEC1500329D46 /* AddFriend */,
 				F04009AC1FD54C2A00BC2B3D /* Selection */,
 				F07426BE1FD5909E00E69937 /* Personal */,
 				F07426B81FD5890500E69937 /* Friends */,
@@ -388,6 +399,7 @@
 				F077A6CF1FD53D690002A377 /* FriendsVC.swift in Sources */,
 				37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */,
 				F08F1AFC1FC81B6200E005EC /* EatWithFriends.xcdatamodeld in Sources */,
+				0286A3551FDFEBFC00329D46 /* AddFriendViewController.swift in Sources */,
 				029145811FDF82B700FF400E /* SelectionVC.swift in Sources */,
 				0206E5921FDDE005005D317B /* SearchFoodVC.swift in Sources */,
 			);

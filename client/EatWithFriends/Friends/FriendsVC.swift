@@ -8,14 +8,27 @@
 
 import UIKit
 
-class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var userSelf: SelfMode?
     
-    /*
-    let words = ["Allen", "Alala", "Bob", "Bulala", "Cat", "Dog", "Ellen", "Frank", "George", "Happy", "Machaosb", "Allen", "Alala", "Bob", "Bulala", "Cat", "Dog", "Ellen", "Frank", "George", "Happy", "Machaosb", "Allen", "Alala", "Bob", "Bulala", "Cat", "Dog", "Ellen", "Frank", "George", "Happy", "Machaosb", "&*(&*&^", "张爱猴"]
-    */
+    @IBAction func AddFriend(_ sender: Any) {
+        let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newfriendvc") as! AddFriendViewController
+        score.modalPresentationStyle = .popover
+        if let pop = score.popoverPresentationController {
+            pop.delegate = self
+            pop.permittedArrowDirections = .down
+            pop.sourceView = sender as! UIButton
+            pop.sourceRect = (sender as! UIButton).bounds
+        }
+        self.present(score, animated: true) { }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+    
     var words = [String]()
     var wordsSection = [String]()
     var wordsDict = [String:[String]]()
