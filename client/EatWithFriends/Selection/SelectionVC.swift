@@ -131,7 +131,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     // Get request to server to get all his friend
     func fetchAllFriends(){        
-        userSelf = SelfMode(url: "")
+        userSelf = SelfMode(url: "https://info449.com/users-info449")
         let globelSelf = self.tabBarController as! tabBarController
         globelSelf.userSelf = self.userSelf
         self.fetchedFriend = (self.userSelf?.getFetchedFriend())!
