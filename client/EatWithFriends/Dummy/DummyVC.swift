@@ -14,9 +14,11 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
     let titles = ["Add Information", "Add Preference"]
     var foodLiked = [String]()
     var foodHated = [String]()
-    var restLiked = [String]()
-    var restHated = [String]()
+    var restLiked = [Restaurant]()
+    var restHated = [Restaurant]()
     var prefRowSelected = -1
+    
+    var restList = [Restaurant]()
     
     var addedFriend: User!
     
@@ -40,6 +42,7 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
         
         if let destinationViewController = segue.destination as? SearchRestVC {
             destinationViewController.delegate = self
+            destinationViewController.restList = self.restList
         }
     }
     
@@ -54,7 +57,7 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
     }
     
     // Append selected restaurant preference
-    func appendRestSelected(restList: [String]) {
+    func appendRestSelected(restList: [Restaurant]) {
         if (prefRowSelected == 2) {
             self.restLiked = restList
         } else if (prefRowSelected == 3) {
@@ -92,9 +95,9 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
                 } else if indexPath.row == 1 {
                     cell.itemList.text = String(stringListToString(stringList: foodHated))
                 } else if indexPath.row == 2 {
-                    cell.itemList.text = String(stringListToString(stringList: restLiked))
+                    cell.itemList.text = String(restListToString(restList: restLiked))
                 } else if indexPath.row == 3 {
-                    cell.itemList.text = String(stringListToString(stringList: restHated))
+                    cell.itemList.text = String(restListToString(restList: restHated))
                 }
             }
             return cell
@@ -105,6 +108,14 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
         var result = ""
         for string in stringList {
             result += (string + " ")
+        }
+        return result
+    }
+    
+    private func restListToString(restList: [Restaurant]) -> String{
+        var result = ""
+        for rest in restList {
+            result += (rest.name + " ")
         }
         return result
     }

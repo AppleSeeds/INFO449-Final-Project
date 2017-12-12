@@ -18,27 +18,23 @@ class SelfMode {
     
     private var foodLiked = [String]()
     private var foodHated = [String]()
-    private var restLiked = [String]()
-    private var restHated = [String]()
-    
+    private var restLiked = [Restaurant]()
+    private var restHated = [Restaurant]()
     private var restList = [Restaurant]() // All of restaurant
     
     private var isRegistered = false
 
     init() {
-        // self.name = LoginViewController.GlobalVariable.myFirstName
-        // self.id = LoginViewController.GlobalVariable.myUserId
-        
-        self.name = "Chao Ma"
-        self.id = "fhqourojkafj0914"
-        
+        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        self.name = LoginViewController.GlobalVariable.myFirstName
+        self.id = LoginViewController.GlobalVariable.myUserId
+    
         let A = User(name: "A", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
         let B = User(name: "B", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
         let C = User(name: "C", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
         let D = User(name: "D", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
         
-        //self.makeGetUserRequest(url: "https://info449.com/users-info449")
-        self.makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        self.makeGetUserRequest(url: "https://info449.com/users-info449")
         fetchedFriend.append(A)
         fetchedFriend.append(B)
         fetchedFriend.append(C)
@@ -57,15 +53,17 @@ class SelfMode {
         return self.foodHated
     }
     
-    func getRestLiked() -> [String] {
+    func getRestLiked() -> [Restaurant] {
         return self.restLiked
     }
     
-    func getRestHated() -> [String] {
+    func getRestHated() -> [Restaurant] {
         return self.restHated
     }
     
-    func getAllRest() -> [Restaurant] {
+    func getRestList() -> [Restaurant] {
+        print(restList)
+        print(allUsers)
         return self.restList
     }
     
@@ -93,18 +91,18 @@ class SelfMode {
         task.resume()
     }
     
-    private func buildSelf(json: [AnyObject], url: String) {
+    func buildSelf(json: [AnyObject], url: String) {
         for obj in json {
             let user = obj as? [String:AnyObject]
             let userName = user!["fullName"] as! String!
             let userEmail = user!["email"] as! String!
-            let userId = user!["userId"] as! String!
+            let userId = user!["id"] as! String!
             let userFriendListString = user!["friend_list"] as! [String]!
             
             var userCategoriesLiked = [String]()
             var userCategoriesHated = [String]()
-            var userRestLiked = [String]()
-            var userRestHated = [String]()
+            var userRestLikedString = [String]()
+            var userRestHatedString = [String]()
             
             let preference = user!["preference"] as! [AnyObject]!
         
@@ -119,10 +117,13 @@ class SelfMode {
                 }
                 
                 for rest in restObj! {
-                    userRestLiked = rest["res_like"] as! [String]!
-                    userRestHated = rest["res_dislike"] as! [String]!
+                    userRestLikedString = rest["res_like"] as! [String]!
+                    userRestHatedString = rest["res_dislike"] as! [String]!
                 }
             }
+            
+            let userRestLiked = findRest(restString: userRestLikedString)
+            let userRestHated = findRest(restString: userRestHatedString)
             
             let userObj = User(name: userName!, id:userId!, email: userEmail!, foodLiked: userCategoriesLiked, foodHated: userCategoriesHated, restLiked: userRestLiked, restHated: userRestHated, friends: userFriendListString!)
             allUsers.append(userObj)
@@ -142,14 +143,14 @@ class SelfMode {
             self.fetchedFriendString = [String]()
             self.foodLiked = [String]()
             self.foodHated = [String]()
-            self.restLiked = [String]()
-            self.restHated = [String]()
+            self.restLiked = [Restaurant]()
+            self.restHated = [Restaurant]()
             self.fetchedFriend = [User]()
             makePostRequest(url: url)
         }
     }
     
-    func findFriend(friendString: [String]) -> [User] {
+    private func findFriend(friendString: [String]) -> [User] {
         var result = [User]()
         for friend in friendString {
             for user in allUsers {
@@ -161,11 +162,22 @@ class SelfMode {
         return result
     }
     
+    private func findRest(restString: [String]) -> [Restaurant] {
+        var result = [Restaurant]()
+        for rest in restString {
+            for restObj in restList {
+                if (rest == restObj.name) {
+                    result.append(restObj)
+                }
+            }
+        }
+        return result
+    }
+    
     // get all the resuaurant information
     func makeGetRestaurantRequest(url: String) {
-        guard let URL = URL(string: url) else { return }
-        
-        let task = URLSession.shared.dataTask(with: URL) {(data, response, error) in
+        let uRL = URL(string: url)
+        let task = URLSession.shared.dataTask(with: uRL!) {(data, response, error) in
             if (!Reachability.isConnectedToNetwork() || error != nil) {
                 if (error != nil) {
                     print(error ?? "Somthing wrong")
@@ -182,10 +194,10 @@ class SelfMode {
         task.resume()
     }
     
-    private func buildRest(json: [AnyObject]) {
+    func buildRest(json: [AnyObject]) {
         for obj in json {
             let rest = obj as? [String:AnyObject]
-            let restName = rest!["fullName"] as! String
+            let restName = rest!["name"] as! String
             let image_url = rest!["image_url"] as! String
             let categories = rest!["categories"] as! [AnyObject]!
             var categoryList = [String]()
@@ -197,7 +209,7 @@ class SelfMode {
             }
             
             let rating = rest!["rating"] as! Double
-            let price = rest!["price"] as! String!
+            let price = rest!["price"] as! String
             let addressObj = rest!["location"] as? [String: AnyObject]
             let addressDisplay = addressObj!["display_address"]  as! [String]
             var address = ""
@@ -208,9 +220,10 @@ class SelfMode {
             let phone = rest!["phone"] as! String
             let distance = rest!["distance"] as! Double
             
-            let newRest = Restaurant(name: restName, image_url: image_url, categories: categoryList, rating: rating, price: price!, address: address, phone: phone, distance: distance)
+            let newRest = Restaurant(name: restName, image_url: image_url, categories: categoryList, rating: rating, price: price, address: address, phone: phone, distance: distance)
             restList.append(newRest)
         }
+
     }
     
     // Post a new user
@@ -219,7 +232,7 @@ class SelfMode {
                      "givenName":"",
                      "familyName":"",
                      "email": "",
-                     "userId": self.id!,
+                     "id": self.id!,
                      "friend_list":[
                         ""
                      ],
@@ -274,5 +287,5 @@ class SelfMode {
     }
     
     // change data of existing user
-////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 }

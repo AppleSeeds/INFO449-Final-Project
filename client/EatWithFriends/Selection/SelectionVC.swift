@@ -20,14 +20,10 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     var addedFriend = [User]()
     var fetchedFriend = [User]()
     
-    var backEndFirstName = LoginViewController.GlobalVariable.myFirstName
-    var backEndLastName = LoginViewController.GlobalVariable.myLastName
-    var backEndId = LoginViewController.GlobalVariable.myUserId
-    
     var foodLiked = [String]()
     var foodHated = [String]()
-    var restLiked = [String]()
-    var restHated = [String]()
+    var restLiked = [Restaurant]()
+    var restHated = [Restaurant]()
     
     var restList = [Restaurant]()
     
@@ -129,6 +125,10 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         if let destinationViewController = segue.destination as? SearchFriendsVC {
             destinationViewController.friendList = self.fetchedFriend
         }
+        
+        if let destinationViewController = segue.destination as? DummyVC {
+            destinationViewController.restList = self.restList
+        }
     }
     
     // Get request to server to get all his friend
@@ -141,29 +141,18 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.foodHated = (self.userSelf?.getFoodHated())!
         self.restLiked = (self.userSelf?.getRestLiked())!
         self.restHated = (self.userSelf?.getRestHated())!
+        self.restList = (self.userSelf?.getRestList())!
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllFriends()
-        //userSelf?.makePostRequest(url: "https://info449.com/users-info449")
         tableView.dataSource = self
         tableView.delegate = self
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
