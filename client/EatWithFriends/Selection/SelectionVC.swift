@@ -29,6 +29,8 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     var restLiked = [String]()
     var restHated = [String]()
     
+    var restList = [Restaurant]()
+    
     // Append friend to addedFriend list
     @IBAction func unwindFromAddDummyVC(segue: UIStoryboardSegue) {
         let senderVC = segue.source as? DummyVC
@@ -131,7 +133,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     // Get request to server to get all his friend
     func fetchAllFriends(){        
-        userSelf = SelfMode(url: "https://info449.com/users-info449")
+        userSelf = SelfMode()
         let globelSelf = self.tabBarController as! tabBarController
         globelSelf.userSelf = self.userSelf
         self.fetchedFriend = (self.userSelf?.getFetchedFriend())!
@@ -144,6 +146,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllFriends()
+        //userSelf?.makePostRequest(url: "https://info449.com/users-info449")
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.

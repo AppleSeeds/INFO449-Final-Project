@@ -234,7 +234,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RgB-YD-aju">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="567"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodCell" id="tn4-rT-GJ7" customClass="FoodCell" customModule="EatWithFriends" customModuleProvider="target">
@@ -280,13 +280,21 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="uWu-zP-aNe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="RgB-YD-aju" firstAttribute="top" secondItem="uWu-zP-aNe" secondAttribute="bottom" id="3dX-xt-XkX"/>
                             <constraint firstItem="GvN-3n-x84" firstAttribute="trailing" secondItem="D2P-dH-gaU" secondAttribute="trailing" id="5qV-9X-vld"/>
+                            <constraint firstItem="uWu-zP-aNe" firstAttribute="trailing" secondItem="D2P-dH-gaU" secondAttribute="trailing" id="JWS-ej-u9q"/>
                             <constraint firstItem="GvN-3n-x84" firstAttribute="bottom" secondItem="D2P-dH-gaU" secondAttribute="bottom" id="Kr2-e8-JcQ"/>
+                            <constraint firstItem="uWu-zP-aNe" firstAttribute="leading" secondItem="D2P-dH-gaU" secondAttribute="leading" id="MPv-H4-RwO"/>
+                            <constraint firstItem="uWu-zP-aNe" firstAttribute="top" secondItem="uoP-k6-zqt" secondAttribute="top" id="NKX-kf-fP3"/>
                             <constraint firstItem="GvN-3n-x84" firstAttribute="leading" secondItem="D2P-dH-gaU" secondAttribute="leading" id="Qev-Jb-eT0"/>
-                            <constraint firstItem="RgB-YD-aju" firstAttribute="top" secondItem="uoP-k6-zqt" secondAttribute="top" id="YrN-1a-c4g"/>
+                            <constraint firstItem="RgB-YD-aju" firstAttribute="top" secondItem="uoP-k6-zqt" secondAttribute="top" constant="56" id="YrN-1a-c4g"/>
                             <constraint firstItem="RgB-YD-aju" firstAttribute="leading" secondItem="D2P-dH-gaU" secondAttribute="leading" id="cJA-cW-cXc"/>
                             <constraint firstItem="RgB-YD-aju" firstAttribute="trailing" secondItem="D2P-dH-gaU" secondAttribute="trailing" id="nTe-OQ-UVG"/>
                             <constraint firstItem="GvN-3n-x84" firstAttribute="top" secondItem="RgB-YD-aju" secondAttribute="bottom" id="oaP-28-78O"/>
@@ -295,6 +303,7 @@
                         <viewLayoutGuide key="safeArea" id="D2P-dH-gaU"/>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="uWu-zP-aNe" id="3er-cl-Aov"/>
                         <outlet property="tableView" destination="RgB-YD-aju" id="JAN-9U-4k8"/>
                     </connections>
                 </viewController>
