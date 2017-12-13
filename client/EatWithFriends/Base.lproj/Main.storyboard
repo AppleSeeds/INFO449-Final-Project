@@ -1144,7 +1144,6 @@
         <image name="сontacts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kJN-ae-BHK"/>
         <segue reference="kfJ-55-x3G"/>
         <segue reference="j12-Qu-AMP"/>
     </inferredMetricsTieBreakers>

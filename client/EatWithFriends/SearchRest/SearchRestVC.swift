@@ -15,8 +15,10 @@ protocol SearchRestViewControllerDelegate {
 class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var restList: [Restaurant]?
-    var restSelected = [Restaurant]()
     var delegate: SearchRestViewControllerDelegate?
+    
+    var restListString: [String]?
+    var restSelected = [String]()
     
     var isSearching = false
     var fileredList = [String]()
@@ -29,7 +31,7 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @IBAction func finish(_ sender: Any) {
-        self.delegate?.appendRestSelected(restList: restSelected)
+        self.delegate?.appendRestSelected(restList: stringListToRestList(stringList: restSelected))
         dismiss(animated: true, completion: nil)
     }
         
@@ -48,17 +50,15 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if isSearching {
             cell.label.text = fileredList[indexPath.row]
         } else {
-            cell.label.text = restList![indexPath.row].name
+            cell.label.text = restListString![indexPath.row]
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let restSelectedString = restListToStringList(restList: restSelected)
-        
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            if !restSelectedString.contains(restList![indexPath.row].name) {
-                restSelected.append(restList![indexPath.row])
+            if !restSelected.contains(restListString![indexPath.row]) {
+                restSelected.append(restListString![indexPath.row])
             }
             let currentCell = tableView.cellForRow(at: indexPath) as! RestaurantCell
             currentCell.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
@@ -66,13 +66,12 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let restListString = restListToStringList(restList: restList!)
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             view.endEditing(true)
         } else {
             isSearching = true
-            fileredList = restListString.filter({$0 == searchBar.text})
+            fileredList = restListString!.filter({$0 == searchBar.text})
         }
         tableView.reloadData()
     }
@@ -84,6 +83,18 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         return result
     }
+    
+    private func stringListToRestList(stringList: [String]) -> [Restaurant] {
+        var result = [Restaurant]()
+        for restString in restSelected {
+            for rest in restList! {
+                if (restString == rest.name) {
+                    result.append(rest)
+                }
+            }
+        }
+        return result
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +102,7 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
+        restListString = restListToStringList(restList: restList!)
         // Do any additional setup after loading the view.
     }
 

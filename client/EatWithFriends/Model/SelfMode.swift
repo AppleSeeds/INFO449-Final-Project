@@ -49,10 +49,10 @@ class SelfMode {
         fetchedFriend.append(C)
         fetchedFriend.append(D)
         
-        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        // makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
         // print(restList)
         
-        // makeGetUserRequest(url: "https://info449.com/users-info449")
+        makeGetUserRequest(url: "https://info449.com/users-info449")
         // print(allUsers)
         // print("///////////")
     }
@@ -126,23 +126,23 @@ class SelfMode {
             var userRestLikedString = [String]()
             var userRestHatedString = [String]()
             
-            let preference = user!["preference"] as! AnyObject!
-            let pref = preference as! [[String:Any]]
+            let preference = user!["preference"] as! [[String:[Any]]]!
+            let prefObj = preference![0] as! [String:[Any]]
             
-            let preList = pref[0] as! [String:Any]
-            let catList = preList["categories"] as! [[String:[String]]]
-            //let resList = preList["restaurants"] as! [[String:[String]]]
+            //let catObj = preObj[0] as! [String:Any]
+            //let resList = prefObj["restaurants"] as! [Any]
+            //let catList = prefObj["categories"] as! [Any]
             
-            let catOne = catList[0]
+            //let catOne = catList[0]
             //let resOne = resList[0]
             
-            let catLike = catOne["cat_like"] as! [String]
-            let catDislike = catOne["cat_dislike"] as! [String]
+            //let catLike = catOne["cat_like"] as! [String]
+            //let catDislike = catOne["cat_dislike"] as! [String]
             // let resLike = resOne["res_like"] as! [String]
             // let resDislike = resOne["res_dislike"] as! [String]
             
-            userCategoriesLiked = catLike
-            userCategoriesHated = catDislike
+            //userCategoriesLiked = catLike
+            //userCategoriesHated = catDislike
             
             /*
             userRestLikedString = resLike
@@ -153,8 +153,8 @@ class SelfMode {
             let userObj = User(name: userName!, id:userId!, email: userEmail!, foodLiked: userCategoriesLiked, foodHated: userCategoriesHated, restLiked: userRestLiked, restHated: userRestHated, friends: userFriendListString!)
             allUsers.append(userObj)
             */
- 
-            if (userName == self.name && userId == self.id) {
+            
+            if (userName == self.name) {
                 isRegistered = true
                 self.fetchedFriendString = userFriendListString!
                 self.foodLiked = userCategoriesLiked
