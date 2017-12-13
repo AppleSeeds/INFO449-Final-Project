@@ -49,10 +49,10 @@ class SelfMode {
         fetchedFriend.append(C)
         fetchedFriend.append(D)
         
-        // makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
         // print(restList)
         
-        makeGetUserRequest(url: "https://info449.com/users-info449")
+        // makeGetUserRequest(url: "https://info449.com/users-info449")
         // print(allUsers)
         // print("///////////")
     }
@@ -80,6 +80,10 @@ class SelfMode {
     func getRestList() -> [Restaurant] {
         // print(restList)
         return self.restList
+    }
+    
+    func getAllUser() -> [User] {
+        return self.getAllUser()
     }
     
 ////////////////////////////////// Http connection
@@ -122,37 +126,42 @@ class SelfMode {
             var userRestLikedString = [String]()
             var userRestHatedString = [String]()
             
-            let preference = user!["preference"] as! [AnyObject]!
+            let preference = user!["preference"] as! AnyObject!
+            let pref = preference as! [[String:Any]]
             
-            for preObj in preference! {
-                let pre = preObj as?[String:[AnyObject]]
-                
-                let categoriesObj = pre!["categories"] as [AnyObject]!
-                let restObj = pre!["restaurants"] as [AnyObject]!
-            }
+            let preList = pref[0] as! [String:Any]
+            let catList = preList["categories"] as! [[String:[String]]]
+            //let resList = preList["restaurants"] as! [[String:[String]]]
+            
+            let catOne = catList[0]
+            //let resOne = resList[0]
+            
+            let catLike = catOne["cat_like"] as! [String]
+            let catDislike = catOne["cat_dislike"] as! [String]
+            // let resLike = resOne["res_like"] as! [String]
+            // let resDislike = resOne["res_dislike"] as! [String]
+            
+            userCategoriesLiked = catLike
+            userCategoriesHated = catDislike
             
             /*
-            userCategoriesLiked = categoriesObj!["cat_like"] as! [String]!
-            userCategoriesHated = categoriesObj!["cat_dislike"] as! [String]!
-            
-            userRestLikedString = restObj!["res_like"] as! [String]!
-            userRestHatedString = restObj!["res_dislike"] as! [String]!
-            
+            userRestLikedString = resLike
+            userRestHatedString = resDislike
             let userRestLiked = findRest(restString: userRestLikedString)
             let userRestHated = findRest(restString: userRestHatedString)
             
             let userObj = User(name: userName!, id:userId!, email: userEmail!, foodLiked: userCategoriesLiked, foodHated: userCategoriesHated, restLiked: userRestLiked, restHated: userRestHated, friends: userFriendListString!)
             allUsers.append(userObj)
-            
+            */
+ 
             if (userName == self.name && userId == self.id) {
                 isRegistered = true
                 self.fetchedFriendString = userFriendListString!
                 self.foodLiked = userCategoriesLiked
                 self.foodHated = userCategoriesHated
-                self.restLiked = userRestLiked
-                self.restHated = userRestHated
+                //self.restLiked = userRestLiked
+                //self.restHated = userRestHated
             }
-            */
         }
         if (isRegistered) {
             self.fetchedFriend = findFriend(friendString: fetchedFriendString)
@@ -163,7 +172,7 @@ class SelfMode {
             self.restLiked = [Restaurant]()
             self.restHated = [Restaurant]()
             self.fetchedFriend = [User]()
-            makePostRequest(url: url)
+            //makePostRequest(url: url)
         }
     }
     
@@ -256,15 +265,15 @@ class SelfMode {
                         ""
                      ],
                      "preference": [
-                        ["categories": [
+                        "categories": [
                             ["cat_like":[
                                 ""
                             ],
                             "cat_dislike":[
                                 ""
                             ]]
-                        ],],
-                        ["restaurants":[
+                        ],
+                        "restaurants":[
                                 ["res_like": [
                                     ""
                                 ],
@@ -276,7 +285,7 @@ class SelfMode {
                                 ],
                                 "res_dislike_id": [
                                     ""
-                                ]]
+                                ]
                             ]
                         ]]
                     ] as [String : Any]

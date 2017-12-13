@@ -16,7 +16,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     var data = [["Search for Friends", "Add a non-user"], []]
     let titles = ["Add a Friend", "Added Friend"]
    
-    var userSelf = SelfMode() //
+    var userSelf: SelfMode?
     
     var addedFriend: [User] = []
     var fetchedFriend = [User]()
@@ -138,14 +138,14 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     // Get request to server to get all his friend
     func fetchAllFriends(){
-        let globelSelf = self.tabBarController as! tabBarController
-        globelSelf.userSelf = self.userSelf
-        self.fetchedFriend = (self.userSelf.getFetchedFriend())
-        self.foodLiked = (self.userSelf.getFoodLiked())
-        self.foodHated = (self.userSelf.getFoodHated())
-        self.restLiked = (self.userSelf.getRestLiked())
-        self.restHated = (self.userSelf.getRestHated())
-        self.restList = (self.userSelf.getRestList())
+        let tbvc = self.tabBarController as! tabBarController
+        self.userSelf = tbvc.userSelf
+        self.fetchedFriend = (self.userSelf?.getFetchedFriend())!
+        self.foodLiked = (self.userSelf?.getFoodLiked())!
+        self.foodHated = (self.userSelf?.getFoodHated())!
+        self.restLiked = (self.userSelf?.getRestLiked())!
+        self.restHated = (self.userSelf?.getRestHated())!
+        self.restList = (self.userSelf?.getRestList())!
     }
         
     override func viewDidLoad() {

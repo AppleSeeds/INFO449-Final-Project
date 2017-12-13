@@ -9,5 +9,6 @@
 import UIKit
 
 class tabBarController: UITabBarController {
-    var userSelf: SelfMode?
+    var userSelf = SelfMode()
+    
 }

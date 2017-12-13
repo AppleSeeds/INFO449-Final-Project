@@ -9,7 +9,7 @@
 import UIKit
 
 class AddFriendViewController: UIViewController {
-
+    var userSelf: SelfMode?
     
     @IBOutlet weak var textField: UITextField!
     @IBAction func cancel(_ sender: Any) {
@@ -17,7 +17,25 @@ class AddFriendViewController: UIViewController {
     }
     
     @IBAction func add(_ sender: Any) {
-        
+        var name = textField.text
+        var isInUser = false
+        var allUser = userSelf?.getAllUser()
+        var addedFriend = userSelf?.getFetchedFriend()
+        for user in (userSelf?.getAllUser())! {
+            if (name == user.name) {
+                isInUser = true
+            }
+            for friend in addedFriend! {
+                if  (name == user.name && name != friend.name) {
+                    
+                } else if (name == user.name && name == friend.name) {
+                    // Alter already add
+                }
+            }
+        }
+        if (!isInUser) {
+            // Alter not a user
+        }
     }
     
     override func viewDidLoad() {

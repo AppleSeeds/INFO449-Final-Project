@@ -10,18 +10,20 @@ import UIKit
 
 class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var userSelf: SelfMode?
+    var selectedRow = -1
+    var friends: [User]?
     
-    // Not correct
-    @IBAction func AddFriend(_ sender: Any) {
+    @IBAction func AddFriend(_ sender: UIButton) {
         let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newfriendvc") as! AddFriendViewController
         score.modalPresentationStyle = .popover
         if let pop = score.popoverPresentationController {
             pop.delegate = self
-            pop.permittedArrowDirections = .down
-            pop.sourceView = sender as! UIButton
-            pop.sourceRect = (sender as! UIButton).bounds
+            pop.permittedArrowDirections = .up
+            pop.sourceView = sender
+            pop.sourceRect = sender.frame
         }
         self.present(score, animated: true) { }
     }
@@ -30,50 +32,8 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         return .none
     }
     
-    var words = [String]()
-    var wordsSection = [String]()
-    var wordsDict = [String:[String]]()
-    
-    func generateWordsDict() {
-        let globelSelf = self.tabBarController as! tabBarController
-        if (globelSelf.userSelf != nil) {
-            self.userSelf = globelSelf.userSelf
-        }
-        words = getNameList(userList: (self.userSelf?.getFetchedFriend())!)
-        for word in words {
-            let key = "\(word[word.startIndex])"
-            let upper = key.uppercased()
-            
-            if var wordValues = wordsDict[upper] {
-                wordValues.append(word)
-                wordsDict[upper] = wordValues
-            } else {
-                wordsDict[upper] = [word]
-            }
-        }
-        
-        wordsSection = [String](wordsDict.keys)
-        wordsSection = wordsSection.sorted()
-    }
-    
-    // Get all names from the user list
-    private func getNameList(userList: [User]) -> [String] {
-        var result = [String]()
-        for user in userList {
-            result.append(user.name)
-        }
-        return result
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return wordsSection.count
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let wordKey = wordsSection[section]
-        if let wordValues = wordsDict[wordKey] {
-            return wordValues.count
-        }
         return 0
     }
     
@@ -81,31 +41,27 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as? FriendsCell else {
             fatalError("The de-queued cell is not an instance of FriendsCell.")
         }
-        let wordKey = wordsSection[indexPath.section]
-        if let wordValues = wordsDict[wordKey.uppercased()] {
-            cell.name.text = wordValues[indexPath.row]
-        }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return wordsSection[section]
-    }
-    
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return wordsSection
-    }
-    
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        guard let index = wordsSection.index(of: title) else {
-            return -1
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            selectedRow = indexPath.row
+            self.performSegue(withIdentifier: "toFriendInfo", sender: nil)
         }
-        return index
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destvc = segue.destination as? FriendPersonalVC {
+            destvc.friendSelf = friends?[selectedRow]
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateWordsDict()
+        let tbvc = tabBarController as! tabBarController
+        self.userSelf = tbvc.userSelf
+        self.friends = self.userSelf?.fetchedFriend
         
         tableView.dataSource = self
         tableView.delegate = self
