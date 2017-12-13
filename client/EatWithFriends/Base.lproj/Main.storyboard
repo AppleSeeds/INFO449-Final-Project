@@ -502,8 +502,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EatWithFriends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqf-ii-chq">
+                                <rect key="frame" x="30" y="140" width="315" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pqf-ii-chq" firstAttribute="top" secondItem="yam-uB-U8f" secondAttribute="top" constant="120" id="Ei7-I5-F3B"/>
+                            <constraint firstItem="pqf-ii-chq" firstAttribute="leading" secondItem="yam-uB-U8f" secondAttribute="leading" constant="30" id="Mh2-xv-E0z"/>
+                            <constraint firstItem="yam-uB-U8f" firstAttribute="trailing" secondItem="pqf-ii-chq" secondAttribute="trailing" constant="30" id="qTh-ws-rt2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="yam-uB-U8f"/>
                     </view>
                     <toolbarItems/>
@@ -763,11 +774,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCg-nc-pzo">
-                                <rect key="frame" x="260" y="74" width="119" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLH-iZ-ZiJ">
                                 <rect key="frame" x="275" y="211" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -912,17 +918,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="fgT-kW-yu8">
-                            <rect key="frame" x="0.0" y="561" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem title="Finish" width="358" id="pSK-eb-ehv">
-                                    <connections>
-                                        <action selector="restSelectionFinishButtonPress:" destination="L7M-dp-iZy" id="Lmf-dN-iuO"/>
-                                    </connections>
-                                </barButtonItem>
-                            </items>
-                        </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choosingRestCells" rowHeight="533" id="jy8-mq-5cT">
                                 <rect key="frame" x="0.0" y="28" width="375" height="533"/>
@@ -971,18 +966,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="iqh-O3-nLY">
-                            <rect key="frame" x="0.0" y="470" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem title="Finish" width="113" id="6UJ-V7-aq4">
-                                    <inset key="landscapeImageInsets" minX="0.0" minY="0.0" maxX="200" maxY="0.0"/>
-                                    <connections>
-                                        <action selector="foodSelectedButtonPressed:" destination="j8R-1U-fVN" id="3Q0-sk-EMr"/>
-                                    </connections>
-                                </barButtonItem>
-                            </items>
-                        </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="foodCell" rowHeight="442" id="cOk-7N-yv6">
                                 <rect key="frame" x="0.0" y="28" width="375" height="442"/>
@@ -1090,6 +1073,6 @@
         <image name="сontacts" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gmw-An-zZH"/>
+        <segue reference="kfJ-55-x3G"/>
     </inferredMetricsTieBreakers>
 </document>

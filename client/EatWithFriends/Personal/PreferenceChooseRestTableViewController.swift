@@ -15,17 +15,13 @@ class PreferenceChooseRestTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavigationItems()
     }
 
-    @IBAction func restSelectionFinishButtonPress(_ sender: UIBarButtonItem) {
-        print(restSelected)
-        performSegue(withIdentifier: "restSelectionToPre", sender: self)
-    }
     
     //after user selection and press button finished, segue is executed, and before execution, save result in global variables to transfer the data back to the preference screen.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationController = segue.destination as! PersonalVC
+//        let destinationController = segue.destination as! PersonalVC
 //        restSelectedString = restSelected.joined(separator: ", ")//put all selected food into one string.
         if(PersonalVC.PersonalPreferenceSettings.whichButton == "toSelectRestLike"){
             PersonalVC.PersonalPreferenceSettings.setSelectedRest = restSelected
@@ -61,8 +57,15 @@ class PreferenceChooseRestTableViewController: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
             restSelected = restSelected.filter { $0 != restaurant[indexPath.row] }
         }
-        
-        
+    }
+    
+    private func setupNavigationItems(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Finished", style: .done, target: self, action: #selector(PreferenceChooseRestTableViewController.restSelectFinishedButtonPressed))
+    }
+    
+    @objc func restSelectFinishedButtonPressed(){
+        print(restSelected)
+        performSegue(withIdentifier: "restSelectionToPre", sender: self)
     }
     /*
     // Override to support conditional editing of the table view.

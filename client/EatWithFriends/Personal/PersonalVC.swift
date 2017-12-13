@@ -53,9 +53,10 @@ class PersonalVC: UIViewController{
         self.userSelf = globelSelf.userSelf // assign the gobel model: userself
         // you can get all data about user from here
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(PersonalVC.logOut))
+        setupLogOutNavicationItem()
+        setupSubmitNavicationItem()
         
-        welcomeText = LoginViewController.GlobalVariable.myFirstName
+        welcomeText = "Hi! "+LoginViewController.GlobalVariable.myFirstName
         welcomeLabel.text = welcomeText
         
         //get the user choice result from the global variable, and put all items together as a string, separated by comma, and set the result string to the TextView.
@@ -76,12 +77,23 @@ class PersonalVC: UIViewController{
         scrollViewResDont.addSubview(restDont)
     }
 
+    private func setupLogOutNavicationItem(){
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(PersonalVC.logOut))
+    }
+    
+    private func setupSubmitNavicationItem(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .done, target: self, action: #selector(PersonalVC.patchInfo))
+    }
+    
     @objc func logOut(){
         GIDSignIn.sharedInstance().signOut()
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         let logOutNextScreen = storyboard.instantiateViewController(withIdentifier: "loginVC")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = logOutNextScreen
+    }
+    
+    @objc func patchInfo(){
     }
     
     //global variables
@@ -92,5 +104,6 @@ class PersonalVC: UIViewController{
         static var setSelectedRest = [String]()
         static var setSelectedRestHate = [String]()
     }
+    
 
 }
