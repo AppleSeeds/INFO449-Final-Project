@@ -24,7 +24,7 @@ class SelfMode {
     var isRegistered: Bool
     
     let semaphore = DispatchSemaphore(value: 0)
-//    let semaphore_2 = DispatchSemaphore(value: 0)
+//  let semaphore_2 = DispatchSemaphore(value: 0)
 
     init() {
         self.name = LoginViewController.GlobalVariable.myFirstName
@@ -39,10 +39,22 @@ class SelfMode {
         self.restList = []
         self.isRegistered = false
         
-        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
-        print(restList)
-        print(allUsers)
-        print("///////////")
+        var A = User(name: "A", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
+        var B = User(name: "B", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
+        var C = User(name: "C", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
+        var D = User(name: "D", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
+        
+        fetchedFriend.append(A)
+        fetchedFriend.append(B)
+        fetchedFriend.append(C)
+        fetchedFriend.append(D)
+        
+        // makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        // print(restList)
+        
+        makeGetUserRequest(url: "https://info449.com/users-info449")
+        // print(allUsers)
+        // print("///////////")
     }
     
     func getFetchedFriend() -> [User]{
@@ -111,22 +123,20 @@ class SelfMode {
             var userRestHatedString = [String]()
             
             let preference = user!["preference"] as! [AnyObject]!
-        
-            for prefObj in preference! {
-                let pref = prefObj as! [String:[AnyObject]]
-                let categoriesObj = pref["categories"] as! [AnyObject]!
-                let restObj = pref["restaurants"] as! [AnyObject]!
+            
+            for preObj in preference! {
+                let pre = preObj as?[String:[AnyObject]]
                 
-                for categories in categoriesObj! {
-                userCategoriesLiked = categories["cat_like"] as! [String]!
-                userCategoriesHated = categories["cat_dislike"] as! [String]!
-                }
-                
-                for rest in restObj! {
-                userRestLikedString = rest["res_like"] as! [String]!
-                userRestHatedString = rest["res_dislike"] as! [String]!
-                }
+                let categoriesObj = pre!["categories"] as [AnyObject]!
+                let restObj = pre!["restaurants"] as [AnyObject]!
             }
+            
+            /*
+            userCategoriesLiked = categoriesObj!["cat_like"] as! [String]!
+            userCategoriesHated = categoriesObj!["cat_dislike"] as! [String]!
+            
+            userRestLikedString = restObj!["res_like"] as! [String]!
+            userRestHatedString = restObj!["res_dislike"] as! [String]!
             
             let userRestLiked = findRest(restString: userRestLikedString)
             let userRestHated = findRest(restString: userRestHatedString)
@@ -142,6 +152,7 @@ class SelfMode {
                 self.restLiked = userRestLiked
                 self.restHated = userRestHated
             }
+            */
         }
         if (isRegistered) {
             self.fetchedFriend = findFriend(friendString: fetchedFriendString)
@@ -206,6 +217,7 @@ class SelfMode {
     func buildRest(json: [AnyObject]) {
         for obj in json {
             let rest = obj as? [String:AnyObject]
+            
             let restName = rest!["name"] as! String
             let image_url = rest!["image_url"] as! String
             let categories = rest!["categories"] as! [AnyObject]!
@@ -244,16 +256,16 @@ class SelfMode {
                         ""
                      ],
                      "preference": [
-                        ["categories":[
-                            "cat_like":[
+                        ["categories": [
+                            ["cat_like":[
                                 ""
                             ],
                             "cat_dislike":[
                                 ""
-                            ]
+                            ]]
                         ],],
                         ["restaurants":[
-                                "res_like": [
+                                ["res_like": [
                                     ""
                                 ],
                                 "res_like_id": [
@@ -264,7 +276,7 @@ class SelfMode {
                                 ],
                                 "res_dislike_id": [
                                     ""
-                                ]
+                                ]]
                             ]
                         ]]
                     ] as [String : Any]

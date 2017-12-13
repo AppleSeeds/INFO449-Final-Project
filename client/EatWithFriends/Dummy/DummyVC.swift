@@ -18,7 +18,7 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
     var restHated = [Restaurant]()
     var prefRowSelected = -1
     
-    var restList = [Restaurant]()
+    var restList: [Restaurant]?
     
     var addedFriend: User!
     
@@ -42,7 +42,6 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
         
         if let destinationViewController = segue.destination as? SearchRestVC {
             destinationViewController.delegate = self
-            destinationViewController.restList = self.restList
         }
     }
     
@@ -149,6 +148,7 @@ class DummyVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
                     let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchrestvc") as! SearchRestVC
                     score.modalPresentationStyle = .popover
                     score.delegate = self
+                    score.restList = self.restList
                     if let pop = score.popoverPresentationController {
                         pop.permittedArrowDirections = .down
                         pop.delegate = self

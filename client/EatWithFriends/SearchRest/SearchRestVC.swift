@@ -14,7 +14,7 @@ protocol SearchRestViewControllerDelegate {
 
 class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    var restList = [Restaurant]()
+    var restList: [Restaurant]?
     var restSelected = [Restaurant]()
     var delegate: SearchRestViewControllerDelegate?
     
@@ -37,7 +37,7 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if isSearching {
             return fileredList.count
         }
-        return restList.count
+        return restList!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { 
@@ -48,7 +48,7 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if isSearching {
             cell.label.text = fileredList[indexPath.row]
         } else {
-            cell.label.text = restList[indexPath.row].name
+            cell.label.text = restList![indexPath.row].name
         }
         return cell
     }
@@ -57,8 +57,8 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let restSelectedString = restListToStringList(restList: restSelected)
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            if !restSelectedString.contains(restList[indexPath.row].name) {
-                restSelected.append(restList[indexPath.row])
+            if !restSelectedString.contains(restList![indexPath.row].name) {
+                restSelected.append(restList![indexPath.row])
             }
             let currentCell = tableView.cellForRow(at: indexPath) as! RestaurantCell
             currentCell.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
@@ -66,7 +66,7 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let restListString = restListToStringList(restList: restList)
+        let restListString = restListToStringList(restList: restList!)
         if searchBar.text == nil || searchBar.text == "" {
             isSearching = false
             view.endEditing(true)

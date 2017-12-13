@@ -18,7 +18,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
    
     var userSelf = SelfMode() //
     
-    var addedFriend = [User]()
+    var addedFriend: [User] = []
     var fetchedFriend = [User]()
     var foodLiked = [String]()
     var foodHated = [String]()
@@ -140,7 +140,6 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func fetchAllFriends(){
         let globelSelf = self.tabBarController as! tabBarController
         globelSelf.userSelf = self.userSelf
-        
         self.fetchedFriend = (self.userSelf.getFetchedFriend())
         self.foodLiked = (self.userSelf.getFoodLiked())
         self.foodHated = (self.userSelf.getFoodHated())
