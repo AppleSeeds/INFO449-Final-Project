@@ -15,17 +15,17 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     var data = [["Search for Friends", "Add a non-user"], []]
     let titles = ["Add a Friend", "Added Friend"]
-    var userSelf: SelfMode?
+   
+    var userSelf = SelfMode() //
     
     var addedFriend = [User]()
     var fetchedFriend = [User]()
-    
     var foodLiked = [String]()
     var foodHated = [String]()
     var restLiked = [Restaurant]()
     var restHated = [Restaurant]()
-    
     var restList = [Restaurant]()
+    
     
     // Append friend to addedFriend list
     @IBAction func unwindFromAddDummyVC(segue: UIStoryboardSegue) {
@@ -129,19 +129,24 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         if let destinationViewController = segue.destination as? DummyVC {
             destinationViewController.restList = self.restList
         }
+        
+        if let destinationViewController = segue.destination as? SelectRestViewController {
+            destinationViewController.userSelf = self.userSelf
+            destinationViewController.addedFriend = self.addedFriend
+        }
     }
     
     // Get request to server to get all his friend
-    func fetchAllFriends(){        
-        userSelf = SelfMode()
+    func fetchAllFriends(){
         let globelSelf = self.tabBarController as! tabBarController
         globelSelf.userSelf = self.userSelf
-        self.fetchedFriend = (self.userSelf?.getFetchedFriend())!
-        self.foodLiked = (self.userSelf?.getFoodLiked())!
-        self.foodHated = (self.userSelf?.getFoodHated())!
-        self.restLiked = (self.userSelf?.getRestLiked())!
-        self.restHated = (self.userSelf?.getRestHated())!
-        self.restList = (self.userSelf?.getRestList())!
+        
+        self.fetchedFriend = (self.userSelf.getFetchedFriend())
+        self.foodLiked = (self.userSelf.getFoodLiked())
+        self.foodHated = (self.userSelf.getFoodHated())
+        self.restLiked = (self.userSelf.getRestLiked())
+        self.restHated = (self.userSelf.getRestHated())
+        self.restList = (self.userSelf.getRestList())
     }
         
     override func viewDidLoad() {

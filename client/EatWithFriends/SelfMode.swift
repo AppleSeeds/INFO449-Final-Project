@@ -9,36 +9,37 @@
 import Foundation
 
 class SelfMode {
-    var allUsers = [User]()
-    var name: String?
-    var id: String?
+    var allUsers: [User]
+    var name: String
+    var id: String
     
-    var fetchedFriend = [User]()
-    var fetchedFriendString = [String]()
+    var fetchedFriend: [User]
+    var fetchedFriendString: [String]
     
-    var foodLiked = [String]()
-    var foodHated = [String]()
-    var restLiked = [Restaurant]()
-    var restHated = [Restaurant]()
-    var restList = [Restaurant]() // All of restaurant
-    var isRegistered = false
+    var foodLiked: [String]
+    var foodHated: [String]
+    var restLiked: [Restaurant]
+    var restHated: [Restaurant]
+    var restList: [Restaurant]
+    var isRegistered: Bool
+    
+    let semaphore = DispatchSemaphore(value: 1)
 
     init() {
-        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
-        print(restList)
         self.name = LoginViewController.GlobalVariable.myFirstName
         self.id = LoginViewController.GlobalVariable.myUserId
-    
-        let A = User(name: "A", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        let B = User(name: "B", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        let C = User(name: "C", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        let D = User(name: "D", foodLiked: [], foodHated: [], restLiked: [], restHated: [])
-        
-        //makeGetUserRequest(url: "https://info449.com/users-info449")
-        fetchedFriend.append(A)
-        fetchedFriend.append(B)
-        fetchedFriend.append(C)
-        fetchedFriend.append(D)
+        self.allUsers = []
+        self.fetchedFriend = []
+        self.fetchedFriendString = []
+        self.foodLiked = []
+        self.foodHated = []
+        self.restLiked = []
+        self.restHated = []
+        self.restList = []
+        self.isRegistered = false
+        // print("init good")
+        // Append Restaurant
+        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
     }
     
     func getFetchedFriend() -> [User]{
@@ -60,17 +61,15 @@ class SelfMode {
     func getRestHated() -> [Restaurant] {
         return self.restHated
     }
-    
+
     func getRestList() -> [Restaurant] {
-        print(restList)
-        print(allUsers)
+        // print(restList)
         return self.restList
     }
     
 ////////////////////////////////// Http connection
     func makeGetUserRequest(url: String) {
         guard let URL = URL(string: url) else { return }
-        
         let task = URLSession.shared.dataTask(with: URL) {(data, response, error) in
                 if (!Reachability.isConnectedToNetwork() || error != nil) {
                     if (error != nil) {
@@ -180,18 +179,23 @@ class SelfMode {
         let task = URLSession.shared.dataTask(with: uRL!) {(data, response, error) in
             if (!Reachability.isConnectedToNetwork() || error != nil) {
                 if (error != nil) {
-                    print(error ?? "Somthing wrong")
+                    print(error)
                 }
+                self.semaphore.signal()
             } else{
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data!) as! [AnyObject]
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as! [AnyObject]
                     self.buildRest(json: json)
+                    self.makeGetUserRequest(url: "https://info449.com/users-info449")
+                    self.semaphore.signal()
                 } catch {
                     print (error)
+                    self.semaphore.signal()
                 }
             }
         }
         task.resume()
+        semaphore.wait()
     }
     
     func buildRest(json: [AnyObject]) {
@@ -220,19 +224,17 @@ class SelfMode {
             let phone = rest!["phone"] as! String
             let distance = rest!["distance"] as! Double
             
-            let newRest = Restaurant(name: restName, image_url: image_url, categories: categoryList, rating: rating, price: price, address: address, phone: phone, distance: distance)
-            restList.append(newRest)
+            self.restList.append(Restaurant(name: restName, image_url: image_url, categories: categoryList, rating: rating, price: price, address: address, phone: phone, distance: distance))
         }
-
     }
     
     // Post a new user
     func makePostRequest(url: String) {
-        let param = ["fullName": self.name!,
+        let param = ["fullName": self.name,
                      "givenName":"",
                      "familyName":"",
                      "email": "",
-                     "id": self.id!,
+                     "id": self.id,
                      "friend_list":[
                         ""
                      ],

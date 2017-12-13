@@ -14,6 +14,8 @@
 		0206E5A01FDE4F66005D317B /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59F1FDE4F66005D317B /* RestaurantCell.swift */; };
 		021179BE1FDFC3F600F213B1 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021179BD1FDFC3F600F213B1 /* RestaurantModel.swift */; };
 		0286A3551FDFEBFC00329D46 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */; };
+		0286A3581FE0B66300329D46 /* SelectRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286A3571FE0B66300329D46 /* SelectRestViewController.swift */; };
+		0286A35A1FE0B8B500329D46 /* SelectRestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286A3591FE0B8B500329D46 /* SelectRestCell.swift */; };
 		0291457B1FDF773400FF400E /* SelfMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291457A1FDF773400FF400E /* SelfMode.swift */; };
 		0291457D1FDF7CCF00FF400E /* tabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291457C1FDF7CCF00FF400E /* tabBarController.swift */; };
 		0291457F1FDF80A900FF400E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291457E1FDF80A900FF400E /* Reachability.swift */; };
@@ -49,6 +51,8 @@
 		0206E59F1FDE4F66005D317B /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		021179BD1FDFC3F600F213B1 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		0286A3571FE0B66300329D46 /* SelectRestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRestViewController.swift; sourceTree = "<group>"; };
+		0286A3591FE0B8B500329D46 /* SelectRestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRestCell.swift; sourceTree = "<group>"; };
 		0291457A1FDF773400FF400E /* SelfMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfMode.swift; sourceTree = "<group>"; };
 		0291457C1FDF7CCF00FF400E /* tabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarController.swift; sourceTree = "<group>"; };
 		0291457E1FDF80A900FF400E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = EatWithFriends/Reachability.swift; sourceTree = SOURCE_ROOT; };
@@ -116,6 +120,15 @@
 				0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */,
 			);
 			path = AddFriend;
+			sourceTree = "<group>";
+		};
+		0286A35B1FE0B8C000329D46 /* SelectRest */ = {
+			isa = PBXGroup;
+			children = (
+				0286A3571FE0B66300329D46 /* SelectRestViewController.swift */,
+				0291457C1FDF7CCF00FF400E /* tabBarController.swift */,
+			);
+			path = SelectRest;
 			sourceTree = "<group>";
 		};
 		37E582751FDBB3FC00B61E86 /* Login */ = {
@@ -223,10 +236,11 @@
 				0291457E1FDF80A900FF400E /* Reachability.swift */,
 				F08F1AF31FC81B6200E005EC /* AppDelegate.swift */,
 				F08F1AF71FC81B6200E005EC /* Main.storyboard */,
+				0286A3591FE0B8B500329D46 /* SelectRestCell.swift */,
 				0206E59A1FDE4560005D317B /* UserModel.swift */,
 				021179BD1FDFC3F600F213B1 /* RestaurantModel.swift */,
 				0291457A1FDF773400FF400E /* SelfMode.swift */,
-				0291457C1FDF7CCF00FF400E /* tabBarController.swift */,
+				0286A35B1FE0B8C000329D46 /* SelectRest */,
 				37E582751FDBB3FC00B61E86 /* Login */,
 				F07426BF1FD590CB00E69937 /* Main */,
 				0286A3561FDFEC1500329D46 /* AddFriend */,
@@ -383,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0286A35A1FE0B8B500329D46 /* SelectRestCell.swift in Sources */,
 				0206E5971FDDE78E005D317B /* FoodCell.swift in Sources */,
 				F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */,
 				0291457D1FDF7CCF00FF400E /* tabBarController.swift in Sources */,
@@ -397,6 +412,7 @@
 				0206E5A01FDE4F66005D317B /* RestaurantCell.swift in Sources */,
 				021179BE1FDFC3F600F213B1 /* RestaurantModel.swift in Sources */,
 				F08F1AF41FC81B6200E005EC /* AppDelegate.swift in Sources */,
+				0286A3581FE0B66300329D46 /* SelectRestViewController.swift in Sources */,
 				0291457B1FDF773400FF400E /* SelfMode.swift in Sources */,
 				F07426BC1FD5902000E69937 /* SearchFriendsCell.swift in Sources */,
 				F0B06CBC1FD555D200751938 /* SelectedFriendsCell.swift in Sources */,

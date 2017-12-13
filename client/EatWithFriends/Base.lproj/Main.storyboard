@@ -616,10 +616,10 @@
             </objects>
             <point key="canvasLocation" x="556" y="-63.418290854572717"/>
         </scene>
-        <!--View Controller-->
+        <!--Select Rest View Controller-->
         <scene sceneID="adE-C4-xdE">
             <objects>
-                <viewController id="R3O-G9-Nal" sceneMemberID="viewController">
+                <viewController id="R3O-G9-Nal" customClass="SelectRestViewController" customModule="EatWithFriends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ap9-d6-KK9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -711,6 +711,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="shc-QX-qyO"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="vpy-eo-hdh" id="4Nr-BP-kTg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXd-ml-slt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -730,30 +733,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose food you like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-Q4-hvf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose food you like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-Q4-hvf">
                                 <rect key="frame" x="34" y="184" width="255" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose food you don't like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMh-LP-NBJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose food you don't like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMh-LP-NBJ">
                                 <rect key="frame" x="34" y="295" width="308" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose restaurants you like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POT-L0-AI7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose restaurants you like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POT-L0-AI7">
                                 <rect key="frame" x="34" y="415" width="278" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose restaurants you don't like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luQ-mC-O3Z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose restaurants you don't like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luQ-mC-O3Z">
                                 <rect key="frame" x="34" y="527" width="308" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -777,9 +776,8 @@
                                     <action selector="selectFoodLikeButtonPressed:" destination="RYU-hg-XHz" eventType="touchUpInside" id="9Or-yF-cke"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lme-Ti-C2M">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lme-Ti-C2M">
                                 <rect key="frame" x="275" y="326" width="67" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Update"/>
                                 <connections>
                                     <action selector="selectFoodHateButtonPressed:" destination="RYU-hg-XHz" eventType="touchUpInside" id="M5v-PO-OZW"/>
@@ -801,9 +799,8 @@
                                     <action selector="selectRestHateButtonPressed:" destination="RYU-hg-XHz" eventType="touchUpInside" id="Icf-YO-PtS"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rgw-G7-6hI">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rgw-G7-6hI">
                                 <rect key="frame" x="34" y="206" width="240" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VPw-cv-DKI">
                                         <rect key="frame" x="8" y="8" width="224" height="68"/>
@@ -814,22 +811,27 @@
                                     </textView>
                                 </subviews>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6TY-R5-q14">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6TY-R5-q14">
                                 <rect key="frame" x="34" y="316" width="240" height="91"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3dJ-jQ-c80">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3dJ-jQ-c80">
                                         <rect key="frame" x="8" y="8" width="224" height="75"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="3dJ-jQ-c80" firstAttribute="leading" secondItem="6TY-R5-q14" secondAttribute="leadingMargin" id="EhK-nc-bnO"/>
+                                    <constraint firstItem="3dJ-jQ-c80" firstAttribute="top" secondItem="6TY-R5-q14" secondAttribute="topMargin" id="GMj-YX-fqS"/>
+                                    <constraint firstItem="3dJ-jQ-c80" firstAttribute="bottom" secondItem="6TY-R5-q14" secondAttribute="bottomMargin" id="Vho-Bn-HNI"/>
+                                    <constraint firstItem="3dJ-jQ-c80" firstAttribute="centerY" secondItem="6TY-R5-q14" secondAttribute="centerY" id="Vlp-Fj-hs2"/>
+                                    <constraint firstItem="3dJ-jQ-c80" firstAttribute="centerX" secondItem="6TY-R5-q14" secondAttribute="centerX" id="bnK-59-c43"/>
+                                    <constraint firstItem="3dJ-jQ-c80" firstAttribute="trailing" secondItem="6TY-R5-q14" secondAttribute="trailingMargin" id="seH-IT-aTp"/>
+                                </constraints>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgg-59-zgV">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgg-59-zgV">
                                 <rect key="frame" x="34" y="438" width="240" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DCD-aM-q0J">
                                         <rect key="frame" x="8" y="8" width="224" height="69"/>
@@ -840,9 +842,8 @@
                                     </textView>
                                 </subviews>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-BF-bFs">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-BF-bFs">
                                 <rect key="frame" x="34" y="550" width="240" height="87"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7YB-Xg-x0d">
                                         <rect key="frame" x="8" y="8" width="232" height="79"/>
@@ -856,12 +857,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="trailing" secondItem="hgg-59-zgV" secondAttribute="trailing" id="0IK-FG-hbY"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="top" secondItem="y48-6N-TIh" secondAttribute="top" constant="316" id="Aqo-Qx-LDp"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="dJB-BF-bFs" secondAttribute="leading" id="BU8-If-zzx"/>
                             <constraint firstItem="l0k-u0-aty" firstAttribute="trailing" secondItem="BKT-E7-gnv" secondAttribute="trailing" constant="10" id="C8B-vV-SUn"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="hgg-59-zgV" secondAttribute="leading" id="FaX-it-6Dw"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="trailing" secondItem="rgw-G7-6hI" secondAttribute="trailing" id="GAu-Dz-4A5"/>
                             <constraint firstItem="BKT-E7-gnv" firstAttribute="leading" secondItem="l0k-u0-aty" secondAttribute="leading" constant="10" id="HQU-B0-8b1"/>
+                            <constraint firstItem="lme-Ti-C2M" firstAttribute="leading" secondItem="6TY-R5-q14" secondAttribute="trailing" constant="1" id="HyB-GY-neE"/>
+                            <constraint firstItem="POT-L0-AI7" firstAttribute="top" secondItem="6TY-R5-q14" secondAttribute="bottom" constant="8" symbolic="YES" id="IQ7-0W-cmH"/>
                             <constraint firstItem="l0k-u0-aty" firstAttribute="trailing" secondItem="w55-En-wen" secondAttribute="trailing" constant="30" id="IZt-Es-5J3"/>
+                            <constraint firstAttribute="bottom" secondItem="6TY-R5-q14" secondAttribute="bottom" constant="260" id="KmV-8Y-Hng"/>
                             <constraint firstItem="w55-En-wen" firstAttribute="top" secondItem="l0k-u0-aty" secondAttribute="top" constant="50" id="SG6-Z6-W05"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="1X3-Q4-hvf" secondAttribute="leading" id="YV8-md-2oH"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="POT-L0-AI7" secondAttribute="leading" id="Zm2-OT-rXl"/>
                             <constraint firstItem="BKT-E7-gnv" firstAttribute="top" secondItem="w55-En-wen" secondAttribute="bottom" constant="10" id="aVt-iU-Drm"/>
+                            <constraint firstAttribute="trailing" secondItem="6TY-R5-q14" secondAttribute="trailing" constant="101" id="foD-yC-aD2"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="l0k-u0-aty" secondAttribute="leading" constant="34" id="fuk-Vf-vn8"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="luQ-mC-O3Z" secondAttribute="leading" id="hfV-pD-7Jp"/>
                             <constraint firstItem="w55-En-wen" firstAttribute="leading" secondItem="l0k-u0-aty" secondAttribute="leading" constant="30" id="p7a-ck-8eb"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="rgw-G7-6hI" secondAttribute="leading" id="pch-1p-Tqr"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="leading" secondItem="iMh-LP-NBJ" secondAttribute="leading" id="qon-pC-UNx"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="top" secondItem="iMh-LP-NBJ" secondAttribute="bottom" id="qq5-3t-nnu"/>
+                            <constraint firstItem="6TY-R5-q14" firstAttribute="trailing" secondItem="dJB-BF-bFs" secondAttribute="trailing" id="tPV-1c-qmZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l0k-u0-aty"/>
                     </view>
