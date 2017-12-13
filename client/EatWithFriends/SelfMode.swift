@@ -23,7 +23,8 @@ class SelfMode {
     var restList: [Restaurant]
     var isRegistered: Bool
     
-    let semaphore = DispatchSemaphore(value: 1)
+    let semaphore = DispatchSemaphore(value: 0)
+//    let semaphore_2 = DispatchSemaphore(value: 0)
 
     init() {
         self.name = LoginViewController.GlobalVariable.myFirstName
@@ -37,9 +38,11 @@ class SelfMode {
         self.restHated = []
         self.restList = []
         self.isRegistered = false
-        // print("init good")
-        // Append Restaurant
+        
         makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        print(restList)
+        print(allUsers)
+        print("///////////")
     }
     
     func getFetchedFriend() -> [User]{
@@ -75,6 +78,7 @@ class SelfMode {
                     if (error != nil) {
                         print(error ?? "Somthing wrong")
                     }
+//                    self.semaphore_2.signal()
                 } else{
                     do {
                         let json = try JSONSerialization.jsonObject(with: data!) as! [AnyObject]
@@ -82,11 +86,14 @@ class SelfMode {
                         self.buildSelf(json: json, url: url)
                         // print(self.name)
                         // print(self.id)
+//                        self.semaphore_2.signal()
                     } catch {
                         print (error)
+//                        self.semaphore_2.signal()
                     }
                 }
         }
+//        semaphore_2.wait()
         task.resume()
     }
     
@@ -106,18 +113,18 @@ class SelfMode {
             let preference = user!["preference"] as! [AnyObject]!
         
             for prefObj in preference! {
-                let pref = prefObj as? [String:AnyObject]
-                let categoriesObj = pref!["categories"] as! [AnyObject]!
-                let restObj = pref!["restaurants"] as! [AnyObject]!
+                let pref = prefObj as! [String:[AnyObject]]
+                let categoriesObj = pref["categories"] as! [AnyObject]!
+                let restObj = pref["restaurants"] as! [AnyObject]!
                 
                 for categories in categoriesObj! {
-                    userCategoriesLiked = categories["cat_like"] as! [String]!
-                    userCategoriesHated = categories["cat_dislike"] as! [String]!
+                userCategoriesLiked = categories["cat_like"] as! [String]!
+                userCategoriesHated = categories["cat_dislike"] as! [String]!
                 }
                 
                 for rest in restObj! {
-                    userRestLikedString = rest["res_like"] as! [String]!
-                    userRestHatedString = rest["res_dislike"] as! [String]!
+                userRestLikedString = rest["res_like"] as! [String]!
+                userRestHatedString = rest["res_dislike"] as! [String]!
                 }
             }
             
@@ -181,18 +188,16 @@ class SelfMode {
                 if (error != nil) {
                     print(error)
                 }
-                self.semaphore.signal()
             } else{
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as! [AnyObject]
                     self.buildRest(json: json)
-                    self.makeGetUserRequest(url: "https://info449.com/users-info449")
-                    self.semaphore.signal()
+                    // self.makeGetUserRequest(url: "https://info449.com/users-info449")
                 } catch {
                     print (error)
-                    self.semaphore.signal()
                 }
             }
+            self.semaphore.signal()
         }
         task.resume()
         semaphore.wait()
