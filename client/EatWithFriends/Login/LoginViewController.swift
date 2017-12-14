@@ -70,21 +70,22 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         //when login successfully, get the user's firstname and go to next screen
-        if(error == nil){
-        let userId = user.userID;
+          if(error == nil){
+          let userId = user.userID;
 //        let idToken = user.authentication.idToken;
-//        let firstName = user.profile.givenName;
+          let firstName = user.profile.givenName;
 //        let email = user.profile.email
-            let lastName = user.profile.familyName;
+          let lastName = user.profile.familyName;
             
+            GlobalVariable.myFirstName = firstName!
+            GlobalVariable.myUserId = userId!
+            GlobalVariable.myLastName = lastName!
 //        emailLabel.text = "Welcome! "+firstName!
             let storyboard = UIStoryboard(name:"Main", bundle:nil)
             let logInNextScreen = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = logInNextScreen
             //performSegue(withIdentifier: "loginToTabBarVCSegue", sender: self)
-            GlobalVariable.myFirstName = user.profile.givenName
-            GlobalVariable.myUserId = userId!
         }else{
             print(error!.localizedDescription)
             return

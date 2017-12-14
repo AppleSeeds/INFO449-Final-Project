@@ -24,11 +24,12 @@ class SelfMode {
     var isRegistered: Bool
     
     let semaphore = DispatchSemaphore(value: 0)
-//  let semaphore_2 = DispatchSemaphore(value: 0)
+    let semaphore2 = DispatchSemaphore(value: 0)
 
     init() {
         self.name = LoginViewController.GlobalVariable.myFirstName
         self.id = LoginViewController.GlobalVariable.myUserId
+        
         self.allUsers = []
         self.fetchedFriend = []
         self.fetchedFriendString = []
@@ -44,16 +45,14 @@ class SelfMode {
         var C = User(name: "C", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
         var D = User(name: "D", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
         
+        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+        makeGetUserRequest(url: "https://info449.com/users-info449")
+        
         fetchedFriend.append(A)
         fetchedFriend.append(B)
         fetchedFriend.append(C)
         fetchedFriend.append(D)
-        
-        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
-
-        print("///////////")
-        print(allUsers)
-        print("///////////")
+        print(self.fetchedFriend)
     }
     
     func getFetchedFriend() -> [User]{
@@ -77,7 +76,6 @@ class SelfMode {
     }
 
     func getRestList() -> [Restaurant] {
-        // print(restList)
         return self.restList
     }
     
@@ -93,23 +91,19 @@ class SelfMode {
                     if (error != nil) {
                         print(error ?? "Somthing wrong")
                     }
-//                    self.semaphore_2.signal()
                 } else{
                     do {
                         let json = try JSONSerialization.jsonObject(with: data!) as! [AnyObject]
-                        // print(json)
                         self.buildSelf(json: json, url: url)
-                        // print(self.name)
-                        // print(self.id)
-//                        self.semaphore_2.signal()
                     } catch {
                         print (error)
-//                        self.semaphore_2.signal()
                     }
+                    
                 }
+                self.semaphore2.signal()
         }
-//        semaphore_2.wait()
         task.resume()
+        self.semaphore2.wait()
     }
     
     private func buildSelf(json: [AnyObject], url: String) {
@@ -117,7 +111,7 @@ class SelfMode {
             let user = obj as? [String:AnyObject]
             let userName = user!["fullName"] as! String!
             let userEmail = user!["email"] as! String!
-            let userId = user!["userId"] as! String! // id might need to change
+            let userId = user!["id"] as! String! // id might need to change
             let userFriendListString = user!["friend_list"] as! [String]!
             
             var userCategoriesLiked = [String]()
@@ -145,7 +139,7 @@ class SelfMode {
             let userObj = User(name: userName!, id:userId!, email: userEmail!, foodLiked: userCategoriesLiked, foodHated: userCategoriesHated, restLiked: userRestLiked, restHated: userRestHated, friends: userFriendListString!)
             allUsers.append(userObj)
             
-            if (userName == self.name) {
+            if (userName == self.name && userId == self.id) {
                 isRegistered = true
                 self.fetchedFriendString = userFriendListString!
                 self.foodLiked = userCategoriesLiked
@@ -163,7 +157,7 @@ class SelfMode {
             self.restLiked = [Restaurant]()
             self.restHated = [Restaurant]()
             self.fetchedFriend = [User]()
-            //makePostRequest(url: url)
+            makePostRequest(url: url)
         }
     }
     
@@ -203,7 +197,6 @@ class SelfMode {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as! [AnyObject]
                     self.buildRest(json: json)
-                    self.makeGetUserRequest(url: "https://info449.com/users-info449")
                 } catch {
                     print (error)
                 }
@@ -256,28 +249,30 @@ class SelfMode {
                         ""
                      ],
                      "preference": [
-                        "categories": [
-                            ["cat_like":[
-                                ""
+                        [
+                            "categories": [
+                                ["cat_like":[
+                                    ""
+                                ],
+                                "cat_dislike":[
+                                    ""
+                                ]]
                             ],
-                            "cat_dislike":[
-                                ""
-                            ]]
-                        ],
-                        "restaurants":[
-                                ["res_like": [
-                                    ""
-                                ],
-                                "res_like_id": [
-                                    ""
-                                ],
-                                "res_dislike": [
-                                    ""
-                                ],
-                                "res_dislike_id": [
-                                    ""
+                            "restaurants":[
+                                    ["res_like": [
+                                        ""
+                                    ],
+                                    "res_like_id": [
+                                        ""
+                                    ],
+                                    "res_dislike": [
+                                        ""
+                                    ],
+                                    "res_dislike_id": [
+                                        ""
+                                    ]
                                 ]
-                            ]
+                        ]
                         ]]
                     ] as [String : Any]
         
@@ -306,5 +301,7 @@ class SelfMode {
     }
     
     // change data of existing user
+    
+    
 //////////////////////////////////////////////////////////////////////////////////////////
 }

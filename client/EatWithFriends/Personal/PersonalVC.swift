@@ -16,7 +16,6 @@ class PersonalVC: UIViewController{
     var userSelf: SelfMode?  // get user data from this!!!!
     
     @IBOutlet weak var welcomeLabel: UILabel!
-    
     @IBOutlet weak var flavorLike: UITextView!
     @IBOutlet weak var flavorDontLike: UITextView!
     @IBOutlet weak var restLike: UITextView!

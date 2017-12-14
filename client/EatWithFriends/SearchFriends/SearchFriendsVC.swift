@@ -16,15 +16,10 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var friendList: [User]?
     var friendNameList = [String]()
-    private func getNames(users: [User]) {
-        friendNameList = [String]()
-        for user in users {
-            friendNameList.append(user.name)
-        }
-    }
     
     var addedFriend = [User]()
     var addedFriendName = [String]()
+    
     private func findFriendObjectByName(nameList: [String]) {
         for name in nameList {
             for user in friendList! {
@@ -32,6 +27,12 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     addedFriend.append(user)
                 }
             }
+        }
+    }
+    
+    private func getNames(users: [User]) {
+        for user in users {
+            friendNameList.append(user.name)
         }
     }
     
