@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RYU-hg-XHz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cnz-CP-7CZ">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1158,6 +1158,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="cancel:" destination="hju-nB-MPc" eventType="touchUpInside" id="d8v-0e-07J"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>

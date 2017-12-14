@@ -52,6 +52,11 @@ class SelfMode {
         fetchedFriend.append(B)
         fetchedFriend.append(C)
         fetchedFriend.append(D)
+        
+        foodLiked.append("Chinese")
+        foodHated.append("Japanese")
+        restLiked.append(Restaurant(name: "Test1", image_url: "", categories: [], rating: 1, price: "", address: ",", phone: "", latitude: 1.1, longitude: 1.1))
+        restHated.append(Restaurant(name: "Test2", image_url: "", categories: [], rating: 1, price: "", address: ",", phone: "", latitude: 1.1, longitude: 1.1))
     }
     
     func getFetchedFriend() -> [User]{
