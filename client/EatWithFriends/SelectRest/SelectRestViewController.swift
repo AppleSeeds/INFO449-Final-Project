@@ -13,7 +13,7 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     
     var userSelf : SelfMode?
     var addedFriend : [User]?
-    var preparedRestList: [Restaurant]? = nil
+    var preparedRestList: [Restaurant]?
     var locationManager: CLLocationManager?
     var userLocation: CLLocation?
     @IBOutlet weak var tableView: UITableView!
@@ -23,28 +23,28 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "restCell", for: indexPath) as! SelectRestCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRestCell", for: indexPath) as! SelectRestCell
         cell.name.text = preparedRestList?[indexPath.row].name
         cell.category.text = preparedRestList?[indexPath.row].categories.joined(separator: ", ")
         cell.rating.text = "\(String(describing: preparedRestList?[indexPath.row].rating))"
         cell.cost.text = preparedRestList?[indexPath.row].price
         cell.address.text = preparedRestList?[indexPath.row].address
         cell.phone.text = preparedRestList?[indexPath.row].phone
-        let latitude = preparedRestList?[indexPath.row].latitude
-        let longitude = preparedRestList?[indexPath.row].longitude
-        let restLoc = CLLocation(latitude: latitude!, longitude: longitude!)
-        let distance = restLoc.distance(from: userLocation!)
-        cell.distance.text = String(distance)
-        if let url = URL(string: (preparedRestList?[indexPath.row].image_url)!) {
-            getDataFromUrl(url: url) { data, response, error in
-                guard let data = data, error == nil else { return }
-                print(response?.suggestedFilename ?? url.lastPathComponent)
-                print("Download Finished")
-                DispatchQueue.main.async() {
-                    cell.picView.image = UIImage(data: data)
-                }
-            }
-        }
+//        let latitude = preparedRestList?[indexPath.row].latitude
+//        let longitude = preparedRestList?[indexPath.row].longitude
+//        let restLoc = CLLocation(latitude: latitude!, longitude: longitude!)
+//        let distance = restLoc.distance(from: userLocation!)
+//        cell.distance.text = String(distance)
+//        if let url = URL(string: (preparedRestList?[indexPath.row].image_url)!) {
+//            getDataFromUrl(url: url) { data, response, error in
+//                guard let data = data, error == nil else { return }
+//                print(response?.suggestedFilename ?? url.lastPathComponent)
+//                print("Download Finished")
+//                DispatchQueue.main.async() {
+//                    cell.picView.image = UIImage(data: data)
+//                }
+//            }
+//        }
         return cell
     }
 
@@ -59,6 +59,10 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        preparedRestList = userSelf?.getRestList()
+        tableView.reloadData()
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
