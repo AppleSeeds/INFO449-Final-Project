@@ -18,7 +18,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     var friendNameList = [String]()
 
     var userSelf: SelfMode?
-    var selectedRow = -1
+    var selectedRow: Int?
     var friends: [User]?
     
     @IBAction func AddFriend(_ sender: UIButton) {
@@ -61,14 +61,17 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             print(indexPath.row)
-            selectedRow = indexPath.row
-            self.performSegue(withIdentifier: "toFriendInfo", sender: nil)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destvc = segue.destination as? FriendPersonalVC {
-            destvc.friendSelf = friends?[selectedRow]
+            // selectedRow = indexPath.row
+            let currentCell = tableView.cellForRow(at: indexPath) as! FriendsCell
+            let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "fpvc") as! FriendPersonalVC
+            score.modalPresentationStyle = .popover
+            if let pop = score.popoverPresentationController {
+                pop.delegate = self
+                pop.permittedArrowDirections = .up
+                pop.sourceView = currentCell
+                pop.sourceRect = currentCell.bounds
+            }
+            self.present(score, animated: true) { }
         }
     }
     
@@ -89,7 +92,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         self.userSelf = tbvc.userSelf
         self.friends = self.userSelf?.fetchedFriend
         getNames(users: self.friends!)
-        
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.

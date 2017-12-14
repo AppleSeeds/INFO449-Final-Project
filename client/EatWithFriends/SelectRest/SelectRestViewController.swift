@@ -13,13 +13,13 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     
     var userSelf : SelfMode?
     var addedFriend : [User]?
-    var preparedRestList: [Restaurant]? = nil
+    var preparedRestList: [Restaurant]?
     var locationManager: CLLocationManager?
     var userLocation: CLLocation?
     @IBOutlet weak var tableView: UITableView!
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (preparedRestList != nil) ? preparedRestList!.count : 0
+        return preparedRestList!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,6 +59,9 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        preparedRestList = userSelf?.getRestList()
+        tableView.reloadData()
+        
         // Do any additional setup after loading the view.
     }
 

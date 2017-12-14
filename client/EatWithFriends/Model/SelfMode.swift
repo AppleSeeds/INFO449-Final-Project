@@ -52,7 +52,6 @@ class SelfMode {
         fetchedFriend.append(B)
         fetchedFriend.append(C)
         fetchedFriend.append(D)
-        print(self.fetchedFriend)
     }
     
     func getFetchedFriend() -> [User]{
