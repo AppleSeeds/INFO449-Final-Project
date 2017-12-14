@@ -13,7 +13,7 @@ class PersonalVC: UIViewController{
 
     
     // Important! Check out SelfModel
-    var userSelf: SelfMode?  // get user data from this!!!!
+    var userSelf: SelfMode?  // get user data from this!!!! add info to userSelf before it can be patched.
     
     @IBOutlet weak var welcomeLabel: UILabel!
     
@@ -49,8 +49,8 @@ class PersonalVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let globelSelf = self.tabBarController as! tabBarController
-        self.userSelf = globelSelf.userSelf // assign the gobel model: userself
+        //let globelSelf = self.tabBarController as! tabBarController
+        //self.userSelf = globelSelf.userSelf // assign the gobel model: userself
         // you can get all data about user from here
         
         setupLogOutNavicationItem()
