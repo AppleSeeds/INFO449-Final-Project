@@ -10,14 +10,17 @@ import UIKit
 
 class PreferenceChooseRestTableViewController: UITableViewController {
     
-    let restaurant = ["A", "B", "C", "D", "E"]//source data
+    let restaurant = ["Guanaco\'s Tacos Pupuseria", "Henry\'s Taiwan Kitchen", "Sizzle&Crunch", "Korean Tofu House", "Thanh Vi", "Wann Yen", "I See Food", "Portage Bay Café", "Beetle Cafe", "Shawarma King", "Mee Sum", "SilkRoad Noodle Bar", "U:Don", "Chi Mac", "Palmi Korean BBQ", "Aladdin Falafel Corner", "Voula\'s Offshore Cafe", "Hiroshi\'s Poke", "Itadakimasu", "Morsel", "Arepa Venezuelan Kitchen", "Old School Ironworks", "JOEY U-Village", "Din Tai Fung", "Ku Sushi and Izakaya", "Pasta & Co", "Ma\'ono Fried Chicken", "Teriyaki 1st", "Eureka!", "Little Lago", "Hokkaido Ramen Santouka", "Amazing Thai Cuisine", "Ba Bar", "Piatti", "Xi\'an Noodles", "Eastlake Bar & Grill", "Fat Ducks Deli & Bakery", "Westward", "Pinkaew Thai Cuisine", "Kabul Afghan Cuisine", "Kokkaku", "TNT Taqueria", "Frank\'s Oyster House & Champagne Parlor", "The Octopus Bar", "Yoroshiku", "Saint Helens Cafe", "Pair", "D\' La Santa", "Jak\'s Grill", "Congeez", "Cantinetta", "Union Saloon", "Harvest Beat", "Pam\'s Kitchen", "Bodrum Bistro Anatolian Kitchen", "Mammoth", "Pomodoro", "Burgundian", "Himalayan Sherpa House", "mkt.", "Cafe Lago", "Kisaku Sushi", "Next Level Burger", "Mioposto - Bryant", "Toronado Seattle", "Tilth", "Rain City Burgers", "Casa Patrón", "Bol Test Kitchen & Bar", "Rocking Wok Taiwanese Cuisine", "Musashi\'s", "JuneBaby", "Pablo y Pablo", "Wataru", "Salare", "Bizzarro Italian Cafe", "The Zouave Restaurant", "Tutta Bella Neapolitan Pizzeria - Wallingford", "Tsui Sushi Bar", "The Butcher & The Baker", "Perché No Pasta & Vino", "Cicchetti", "Serafina", "36 Stone", "RoRo BBQ & Grill", "Art of The Table", "Seattle Meowtropolitan", "Joule", "Manolin", "Stone Way Cafe", "Kamonegi", "Thackeray", "MiiR", "Pacific Inn Pub", "Nell\'s Restaurant", "Brunello Ristorante", "Shelter Lounge", "Mykonos Greek Grill", "Uneeda Burger", "Rosita\'s Mexican Grill"]
+   
     var restSelected = [String]()//result from user choice
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItems()
-    }
+        
 
+    }
     
     //after user selection and press button finished, segue is executed, and before execution, save result in global variables to transfer the data back to the preference screen.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -30,11 +33,8 @@ class PreferenceChooseRestTableViewController: UITableViewController {
         }
         
     }
-    // MARK: - Table view data source
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return restaurant.count
     }
 
@@ -44,7 +44,7 @@ class PreferenceChooseRestTableViewController: UITableViewController {
         cell.textLabel?.text = restaurant[indexPath.row]
         return cell
     }
-    //setup table view with data
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //when user tapped a row and if it is not ticked, the row will be ticked and this item is added to the result array.
         if (tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.none){
@@ -67,49 +67,14 @@ class PreferenceChooseRestTableViewController: UITableViewController {
         print(restSelected)
         performSegue(withIdentifier: "restSelectionToPre", sender: self)
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    private func restListToStringList(restList: [Restaurant]) -> [String] {
+        var result = [String]()
+        for rest in restList {
+            result.append(rest.name)
+        }
+        return result
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

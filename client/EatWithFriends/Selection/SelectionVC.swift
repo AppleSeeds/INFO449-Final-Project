@@ -151,13 +151,35 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllFriends()
-
         tableView.dataSource = self
         tableView.delegate = self
+        getUserInfoAndSaveInPersonalVC()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func getUserInfoAndSaveInPersonalVC(){
+        var restaurantsLike = [Restaurant]()
+        var restaurantsHate = [Restaurant]()
+        PersonalVC.PersonalPreferenceSettings.setSelectedFood = (userSelf?.getFoodLiked())!
+        PersonalVC.PersonalPreferenceSettings.setSelectedFoodHate = (userSelf?.getFoodLiked())!
+        if(PersonalVC.PersonalPreferenceSettings.setSelectedRest.count != 0){
+            PersonalVC.PersonalPreferenceSettings.setSelectedRest.removeAll()
+        }
+        if(PersonalVC.PersonalPreferenceSettings.setSelectedRestHate.count != 0){
+            PersonalVC.PersonalPreferenceSettings.setSelectedRestHate.removeAll()
+        }
+        restaurantsLike = (userSelf?.getRestLiked())!
+        for item in restaurantsLike{
+            PersonalVC.PersonalPreferenceSettings.setSelectedRest.append(item.name)
+        }
+        
+        restaurantsHate = (userSelf?.getRestHated())!
+        for item in restaurantsHate{
+            PersonalVC.PersonalPreferenceSettings.setSelectedRestHate.append(item.name)
+        }
     }
 }

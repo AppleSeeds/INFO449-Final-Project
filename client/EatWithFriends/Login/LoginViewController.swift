@@ -14,7 +14,9 @@ import GoogleSignIn
 //}
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
-    //var delegate: DataSentDelegate? = nil
+    var userSelf:SelfMode?
+    
+    
     @IBOutlet weak var emailLabel: UILabel!
     //    let inputsContainerView: UIView = {
 //        let view = UIView()
@@ -50,11 +52,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         signInButton.center = view.center
         view.addSubview(signInButton)
         view.backgroundColor = UIColor.white
-        //view.addSubview(inputsContainerView)
-        //view.addSubview(loginRegisterButton)
-        //setupInputsContainerView()
-        //setupLoginRegisterButton()
-        //constraints
         
     }
     
@@ -72,20 +69,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         //when login successfully, get the user's firstname and go to next screen
           if(error == nil){
           let userId = user.userID;
-//        let idToken = user.authentication.idToken;
           let firstName = user.profile.givenName;
-//        let email = user.profile.email
           let lastName = user.profile.familyName;
             
             GlobalVariable.myFirstName = firstName!
             GlobalVariable.myUserId = userId!
             GlobalVariable.myLastName = lastName!
-//        emailLabel.text = "Welcome! "+firstName!
+            //getUserInfoAndSaveInPersonalVC()
             let storyboard = UIStoryboard(name:"Main", bundle:nil)
             let logInNextScreen = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = logInNextScreen
-            //performSegue(withIdentifier: "loginToTabBarVCSegue", sender: self)
         }else{
             print(error!.localizedDescription)
             return
@@ -98,14 +92,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         static var myLastName = String()
         
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        var personalVC = segue.destination as! PersonalVC
-//        personalVC.welcomeText = emailLabel.text!
-//    }
+
     
-    func setupLoginRegisterButton(){
-        
-    }
+
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent

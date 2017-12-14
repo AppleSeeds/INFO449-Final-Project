@@ -14,7 +14,11 @@ class PersonalVC: UIViewController{
     
     // Important! Check out SelfModel
     var userSelf: SelfMode?  // get user data from this!!!! add info to userSelf before it can be patched.
-    
+    var restList = [Restaurant]()
+    var restSelected = [String]()
+    var restFullList = [Restaurant]()
+    var restListStringLike = [String]()
+    var restListStringHate = [String]()
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var flavorLike: UITextView!
     @IBOutlet weak var flavorDontLike: UITextView!
@@ -48,15 +52,10 @@ class PersonalVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let globelSelf = self.tabBarController as! tabBarController
-        //self.userSelf = globelSelf.userSelf // assign the gobel model: userself
-        // you can get all data about user from here
         
         setupLogOutNavicationItem()
         setupSubmitNavicationItem()
-        
-        welcomeText = "Hi! "+LoginViewController.GlobalVariable.myFirstName
-        welcomeLabel.text = welcomeText
+        setupWelcomeText()
         
         //get the user choice result from the global variable, and put all items together as a string, separated by comma, and set the result string to the TextView.
         flavorLike.text = PersonalPreferenceSettings.setSelectedFood.joined(separator: ", ")
@@ -74,6 +73,7 @@ class PersonalVC: UIViewController{
         restDont.text = PersonalPreferenceSettings.setSelectedRestHate.joined(separator: ", ")
         restDont.isEditable = false
         scrollViewResDont.addSubview(restDont)
+        
     }
 
     private func setupLogOutNavicationItem(){
@@ -84,6 +84,11 @@ class PersonalVC: UIViewController{
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .done, target: self, action: #selector(PersonalVC.patchInfo))
     }
     
+    private func setupWelcomeText(){
+        welcomeText = "Hi! "+LoginViewController.GlobalVariable.myFirstName
+        welcomeLabel.text = welcomeText
+    }
+    
     @objc func logOut(){
         GIDSignIn.sharedInstance().signOut()
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
@@ -91,8 +96,9 @@ class PersonalVC: UIViewController{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = logOutNextScreen
     }
-    
+    //function executed when submit button clicked
     @objc func patchInfo(){
+        userData()
     }
     
     //global variables
@@ -104,5 +110,26 @@ class PersonalVC: UIViewController{
         static var setSelectedRestHate = [String]()
     }
     
-
+    func userData(){
+        userSelf?.foodLiked = PersonalPreferenceSettings.setSelectedFood
+        userSelf?.foodHated = PersonalPreferenceSettings.setSelectedFoodHate
+        restListStringLike = PersonalPreferenceSettings.setSelectedRest
+        restListStringHate = PersonalPreferenceSettings.setSelectedRestHate
+        userSelf?.restLiked = stringListToRestList(stringList: restListStringLike)
+        userSelf?.restHated = stringListToRestList(stringList: restListStringHate)
+        
+    }
+    
+    private func stringListToRestList(stringList: [String]) -> [Restaurant] {
+        restList = (userSelf?.getRestList())!
+        var result = [Restaurant]()
+        for item in stringList {
+            for restInFull in restList {
+                if (item == restInFull.name) {
+                    result.append(restInFull)
+                }
+            }
+        }
+        return result
+    }
 }

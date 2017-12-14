@@ -27,6 +27,8 @@
 		37D993261FDFAE6100B7A1B1 /* PreferenceChooseFoodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D993251FDFAE6100B7A1B1 /* PreferenceChooseFoodTableViewController.swift */; };
 		37D993461FDFE47700B7A1B1 /* PreferenceChooseRestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D993451FDFE47700B7A1B1 /* PreferenceChooseRestTableViewController.swift */; };
 		37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E582781FDBB9DF00B61E86 /* LoginViewController.swift */; };
+		37EA7C6C1FE2ADA7001D1B49 /* background_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EA7C6B1FE2ADA6001D1B49 /* background_2.png */; };
+		37EA7C6E1FE2B2F0001D1B49 /* background_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EA7C6D1FE2B2EE001D1B49 /* background_3.png */; };
 		54ECBCC6762204BC08C53439 /* Pods_EatWithFriends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */; };
 		F04009AB1FD54C1C00BC2B3D /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */; };
 		F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07426B91FD58EFF00E69937 /* FriendsCell.swift */; };
@@ -65,6 +67,8 @@
 		37D993251FDFAE6100B7A1B1 /* PreferenceChooseFoodTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceChooseFoodTableViewController.swift; sourceTree = "<group>"; };
 		37D993451FDFE47700B7A1B1 /* PreferenceChooseRestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceChooseRestTableViewController.swift; sourceTree = "<group>"; };
 		37E582781FDBB9DF00B61E86 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		37EA7C6B1FE2ADA6001D1B49 /* background_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_2.png; sourceTree = "<group>"; };
+		37EA7C6D1FE2B2EE001D1B49 /* background_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_3.png; sourceTree = "<group>"; };
 		94FA1B71C6FB7693C43CB796 /* Pods_EatWithFriends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatWithFriends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF4EE8F80C6FF1C1C849FEF1 /* Pods-EatWithFriends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatWithFriends.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EatWithFriends/Pods-EatWithFriends.debug.xcconfig"; sourceTree = "<group>"; };
 		F04009AA1FD54C1C00BC2B3D /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 		F08F1AE71FC81B6200E005EC = {
 			isa = PBXGroup;
 			children = (
+				37EA7C6D1FE2B2EE001D1B49 /* background_3.png */,
+				37EA7C6B1FE2ADA6001D1B49 /* background_2.png */,
 				F08F1AF21FC81B6200E005EC /* EatWithFriends */,
 				F08F1AF11FC81B6200E005EC /* Products */,
 				A64B0D41E92F5C811B4EEE42 /* Pods */,
@@ -342,8 +348,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F08F1B011FC81B6200E005EC /* LaunchScreen.storyboard in Resources */,
+				37EA7C6E1FE2B2F0001D1B49 /* background_3.png in Resources */,
 				3753D8EE1FDCC9D900A1B9DD /* GoogleService-Info.plist in Resources */,
 				F08F1AFE1FC81B6200E005EC /* Assets.xcassets in Resources */,
+				37EA7C6C1FE2ADA7001D1B49 /* background_2.png in Resources */,
 				F08F1AF91FC81B6200E005EC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
