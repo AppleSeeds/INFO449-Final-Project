@@ -16,12 +16,6 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var friendList: [User]?
     var friendNameList = [String]()
-    private func getNames(users: [User]) {
-        friendNameList = [String]()
-        for user in users {
-            friendNameList.append(user.name)
-        }
-    }
     
     var addedFriend = [User]()
     var addedFriendName = [String]()
@@ -82,6 +76,12 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             fileredList = friendNameList.filter({$0 == searchBar.text})
         }
         tableView.reloadData()
+    }
+    
+    private func getNames(users: [User]) {
+        for user in users {
+            friendNameList.append(user.name)
+        }
     }
 
     override func viewDidLoad() {

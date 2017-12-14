@@ -12,6 +12,9 @@ class FriendPersonalVC: UIViewController {
     
     var friendSelf: User?
     
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
