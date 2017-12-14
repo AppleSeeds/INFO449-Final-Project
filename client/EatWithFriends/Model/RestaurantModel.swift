@@ -16,9 +16,10 @@ struct Restaurant {
     var price: String
     var address: String
     var phone: String
-    var distance: Double
+    var latitude: Double
+    var longitude: Double
     
-    init(name: String, image_url: String, categories: [String], rating: Double, price: String, address: String, phone: String, distance: Double) {
+    init(name: String, image_url: String, categories: [String], rating: Double, price: String, address: String, phone: String, latitude: Double, longitude: Double) {
         self.name = name
         self.image_url = image_url
         self.categories = categories
@@ -26,6 +27,7 @@ struct Restaurant {
         self.price = price
         self.address = address
         self.phone = phone
-        self.distance = distance
+        self.latitude = latitude
+        self.longitude = longitude
     }
 }

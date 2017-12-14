@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
-class SelectRestViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SelectRestViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+    
     var userSelf : SelfMode?
     var addedFriend : [User]?
     var preparedRestList: [Restaurant]? = nil
+    var locationManager: CLLocationManager?
+    var userLocation: CLLocation?
     @IBOutlet weak var tableView: UITableView!
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,7 +30,11 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
         cell.cost.text = preparedRestList?[indexPath.row].price
         cell.address.text = preparedRestList?[indexPath.row].address
         cell.phone.text = preparedRestList?[indexPath.row].phone
-        cell.distance.text = "\(String(describing: preparedRestList?[indexPath.row].distance))"
+        let latitude = preparedRestList?[indexPath.row].latitude
+        let longitude = preparedRestList?[indexPath.row].longitude
+        let restLoc = CLLocation(latitude: latitude!, longitude: longitude!)
+        let distance = restLoc.distance(from: userLocation!)
+        cell.distance.text = String(distance)
         if let url = URL(string: (preparedRestList?[indexPath.row].image_url)!) {
             getDataFromUrl(url: url) { data, response, error in
                 guard let data = data, error == nil else { return }
@@ -48,15 +56,51 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
             completion(data, response, error)
             }.resume()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        determineMyCurrentLocation()
+    }
+    
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager!.delegate = self
+        locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager!.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager!.startUpdatingLocation()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        userLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+        // manager.stopUpdatingLocation()
+        
+        print("user latitude = \(userLocation!.coordinate.latitude)")
+        print("user longitude = \(userLocation!.coordinate.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
+    }
+
     
 }
