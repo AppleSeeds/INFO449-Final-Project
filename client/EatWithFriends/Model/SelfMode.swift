@@ -232,9 +232,10 @@ class SelfMode {
             }
             
             let phone = rest!["phone"] as! String
-            let distance = rest!["distance"] as! Double
+            let longitude = rest!["coordinates"]!["longitude"] as! Double
+            let latitude = rest!["coordinates"]!["latitude"] as! Double
             
-            self.restList.append(Restaurant(name: restName, image_url: image_url, categories: categoryList, rating: rating, price: price, address: address, phone: phone, distance: distance))
+            self.restList.append(Restaurant(name: restName, image_url: image_url, categories: categoryList, rating: rating, price: price, address: address, phone: phone, latitude: latitude, longitude: longitude))
         }
     }
     
