@@ -14,7 +14,7 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var isSearching = false
     var fileredList = [String]()
     
-    var friendList = [User]()
+    var friendList: [User]?
     var friendNameList = [String]()
     private func getNames(users: [User]) {
         friendNameList = [String]()
@@ -27,7 +27,7 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var addedFriendName = [String]()
     private func findFriendObjectByName(nameList: [String]) {
         for name in nameList {
-            for user in friendList {
+            for user in friendList! {
                 if name == user.name {
                     addedFriend.append(user)
                 }
@@ -52,7 +52,7 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as? SearchFriendsCell else {
-            fatalError("The de-queued cell is not an instance of FoodCell.")
+            fatalError("The de-queued cell is not an instance of SearchFriendCell.")
         }
         cell.name.adjustsFontSizeToFitWidth = true
         if isSearching {
@@ -87,7 +87,7 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         //generateWordsDict()
-        getNames(users: friendList)
+        getNames(users: friendList!)
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self

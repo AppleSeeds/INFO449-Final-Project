@@ -49,12 +49,11 @@ class SelfMode {
         fetchedFriend.append(C)
         fetchedFriend.append(D)
         
-        // makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
-        // print(restList)
-        
-        makeGetUserRequest(url: "https://info449.com/users-info449")
-        // print(allUsers)
-        // print("///////////")
+        makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
+
+        print("///////////")
+        print(allUsers)
+        print("///////////")
     }
     
     func getFetchedFriend() -> [User]{
@@ -83,7 +82,7 @@ class SelfMode {
     }
     
     func getAllUser() -> [User] {
-        return self.getAllUser()
+        return self.allUsers
     }
     
 ////////////////////////////////// Http connection
@@ -113,12 +112,12 @@ class SelfMode {
         task.resume()
     }
     
-    func buildSelf(json: [AnyObject], url: String) {
+    private func buildSelf(json: [AnyObject], url: String) {
         for obj in json {
             let user = obj as? [String:AnyObject]
             let userName = user!["fullName"] as! String!
             let userEmail = user!["email"] as! String!
-            let userId = user!["id"] as! String!
+            let userId = user!["userId"] as! String! // id might need to change
             let userFriendListString = user!["friend_list"] as! [String]!
             
             var userCategoriesLiked = [String]()
@@ -129,38 +128,30 @@ class SelfMode {
             let preference = user!["preference"] as! [[String:[Any]]]!
             let prefObj = preference![0] as! [String:[Any]]
             
-            //let catObj = preObj[0] as! [String:Any]
-            //let resList = prefObj["restaurants"] as! [Any]
-            //let catList = prefObj["categories"] as! [Any]
+            let resObj = prefObj["restaurants"] as! [Any]
+            let catObj = prefObj["categories"] as! [Any]
             
-            //let catOne = catList[0]
-            //let resOne = resList[0]
+            let restDic = resObj[0] as! [String:[String]]
+            let catDic = catObj[0] as! [String:[String]]
             
-            //let catLike = catOne["cat_like"] as! [String]
-            //let catDislike = catOne["cat_dislike"] as! [String]
-            // let resLike = resOne["res_like"] as! [String]
-            // let resDislike = resOne["res_dislike"] as! [String]
+            userCategoriesLiked = restDic["res_like"] as! [String]
+            userCategoriesHated = restDic["res_dislike"] as! [String]
+            userCategoriesLiked = catDic["cat_like"] as! [String]
+            userCategoriesHated = catDic["cat_dislike"] as! [String]
             
-            //userCategoriesLiked = catLike
-            //userCategoriesHated = catDislike
-            
-            /*
-            userRestLikedString = resLike
-            userRestHatedString = resDislike
             let userRestLiked = findRest(restString: userRestLikedString)
             let userRestHated = findRest(restString: userRestHatedString)
             
             let userObj = User(name: userName!, id:userId!, email: userEmail!, foodLiked: userCategoriesLiked, foodHated: userCategoriesHated, restLiked: userRestLiked, restHated: userRestHated, friends: userFriendListString!)
             allUsers.append(userObj)
-            */
             
             if (userName == self.name) {
                 isRegistered = true
                 self.fetchedFriendString = userFriendListString!
                 self.foodLiked = userCategoriesLiked
                 self.foodHated = userCategoriesHated
-                //self.restLiked = userRestLiked
-                //self.restHated = userRestHated
+                self.restLiked = userRestLiked
+                self.restHated = userRestHated
             }
         }
         if (isRegistered) {
@@ -212,7 +203,7 @@ class SelfMode {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as! [AnyObject]
                     self.buildRest(json: json)
-                    // self.makeGetUserRequest(url: "https://info449.com/users-info449")
+                    self.makeGetUserRequest(url: "https://info449.com/users-info449")
                 } catch {
                     print (error)
                 }
