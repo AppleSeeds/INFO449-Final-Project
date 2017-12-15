@@ -175,18 +175,17 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
 //    }
     
     @IBAction func randomSelectForUser(_ sender: UIButton) {
-        if let restList = preparedRestList {
-            if restList.count == 1 {
+            if specRestList.count == 1 {
                 let alert = UIAlertController(title: "Wanna change to another restaurant?", message: "You have to go where we chose for u.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Fine.", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             } else {
-                let rand = Int(arc4random_uniform(UInt32(restList.count)))
-                let chosenOne = restList[rand]
-                preparedRestList = [chosenOne]
+                let rand = Int(arc4random_uniform(UInt32(specRestList.count)))
+                let chosenOne = specRestList[rand]
+                specRestList = [chosenOne]
                 tableView.reloadData()
             }
-        }
+        
     }
     
     // Show the popup to the user if we have been deined access
