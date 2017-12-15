@@ -10,7 +10,6 @@ import UIKit
 
 class SelectRestCell: UITableViewCell {
 
-    @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var phone: UILabel!
     @IBOutlet weak var cost: UILabel!
     @IBOutlet weak var picView: UIImageView!

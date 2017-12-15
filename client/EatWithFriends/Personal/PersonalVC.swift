@@ -53,6 +53,9 @@ class PersonalVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tbvc = tabBarController as! tabBarController
+        self.userSelf = tbvc.userSelf
+        
         setupLogOutNavicationItem()
         setupSubmitNavicationItem()
         setupWelcomeText()
@@ -96,9 +99,58 @@ class PersonalVC: UIViewController{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = logOutNextScreen
     }
+    
     //function executed when submit button clicked
     @objc func patchInfo(){
         userData()
+        let param = [
+            "id": "XN2WrDf3qKrzNzC",
+            "preference": [
+                    [
+                        "categories": [
+                            ["cat_like": [
+                                "New"
+                                ],
+                             "cat_dislike": [""]
+                            ]
+                        ],
+                        "restaurants":[
+                            ["res_like": [""],
+                             "res_like_id": [
+                                ""
+                                ],
+                             "res_dislike": [""],
+                             "res_dislike_id": [
+                                ""
+                                ]
+                            ]
+                        ]
+                    ]
+            ]
+        ] as [String: Any]
+        let userUrl = "https://info449.com/users-info449"
+        guard let url = URL(string: userUrl) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: param) else { return }
+        request.httpBody = httpBody
+
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch {
+                    print(error)
+                }
+            }
+        }.resume()
     }
     
     //global variables
