@@ -53,6 +53,15 @@ class PersonalVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollViewResDont.layer.borderColor = UIColor.black.cgColor
+        scrollViewResDont.layer.borderWidth = 1.0
+        scrollViewResLike.layer.borderColor = UIColor.black.cgColor
+        scrollViewResLike.layer.borderWidth = 1.0
+        scrollViewfoodDont.layer.borderColor = UIColor.black.cgColor
+        scrollViewfoodDont.layer.borderWidth = 1.0
+        scrollViewFoodLike.layer.borderColor = UIColor.black.cgColor
+        scrollViewFoodLike.layer.borderWidth = 1.0
+        
         let tbvc = tabBarController as! tabBarController
         self.userSelf = tbvc.userSelf
         
