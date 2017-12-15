@@ -142,11 +142,11 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
                 }
             } else {
                 for rest in restList {
-                    if likeRestList.contains(rest.name) {
+                    if likeRestList.contains(rest.name) && !isHatedCat(catoList: dislikeFlavorList, rest: rest){
                         specRestList.append(rest)
                     } else {
                         for cato in rest.categories {
-                            if likeFlavorList.contains(cato) {
+                            if likeFlavorList.contains(cato)  {
                                 specRestList.append(rest)
                             }
                         }
@@ -154,6 +154,17 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
                 }
             }
         }
+    }
+    
+    private func isHatedCat(catoList: [String], rest: Restaurant) -> Bool {
+        for rest_cato in rest.categories {
+            for cato in catoList {
+                if cato == rest_cato {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

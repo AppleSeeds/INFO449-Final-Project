@@ -13,6 +13,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    var tbvc: tabBarController?
     var isSearching = false
     var fileredList = [String]()
     var friendNameList = [String]()
@@ -42,6 +43,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func reloadData() {
         self.friendNameList = []
         getNames(users: self.friends!)
+        tbvc?.userSelf = self.userSelf!
         tableView.reloadData()
     }
     
@@ -105,8 +107,8 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tbvc = tabBarController as! tabBarController
-        self.userSelf = tbvc.userSelf
+        tbvc = tabBarController as! tabBarController
+        self.userSelf = tbvc?.userSelf
         self.friends = self.userSelf?.fetchedFriend
         getNames(users: self.friends!)
         tableView.dataSource = self

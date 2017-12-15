@@ -40,18 +40,9 @@ class SelfMode {
         self.restList = []
         self.isRegistered = false
 
-        var A = User(name: "A", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
-        var B = User(name: "B", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
-        var C = User(name: "C", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
-        var D = User(name: "D", foodLiked: [""], foodHated: [""], restLiked: [], restHated: [])
-
         makeGetRestaurantRequest(url: "https://info449.com/uw-restaurants-info449")
         makeGetUserRequest(url: "https://info449.com/users-info449")
 
-        fetchedFriend.append(A)
-        fetchedFriend.append(B)
-        fetchedFriend.append(C)
-        fetchedFriend.append(D)
     }
 
     func getFetchedFriend() -> [User] {
