@@ -60,11 +60,11 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            print(indexPath.row)
             // selectedRow = indexPath.row
             let currentCell = tableView.cellForRow(at: indexPath) as! FriendsCell
             let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "fpvc") as! FriendPersonalVC
             score.modalPresentationStyle = .popover
+            score.friendSelf = findFriendByName(name: currentCell.name.text!)
             if let pop = score.popoverPresentationController {
                 pop.delegate = self
                 pop.permittedArrowDirections = .up
@@ -75,13 +75,22 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
     }
     
+    private func findFriendByName(name: String) -> User {
+        for friend in self.friends! {
+            if (friend.name == name) {
+                return friend
+            }
+        }
+        return User(name: "false", id: "", email: "", foodLiked: [], foodHated: [], restLiked: [], restHated: [], friends: [])
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if (searchBar.text == nil || searchBar.text == "") {
             isSearching = false
             view.endEditing(true)
         } else {
             isSearching = true
-            fileredList = friendNameList.filter({$0 == searchBar.text})
+            fileredList = friendNameList.filter({$0.starts(with: searchText)})
         }
         tableView.reloadData()
     }
@@ -94,6 +103,9 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         getNames(users: self.friends!)
         tableView.dataSource = self
         tableView.delegate = self
+        
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
         // Do any additional setup after loading the view.
     }
     

@@ -63,6 +63,8 @@ class SearchFriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 addedFriendName.append(friendNameList[indexPath.row])
             }
             let currentCell = tableView.cellForRow(at: indexPath) as! SearchFriendsCell
+            
+            
             currentCell.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
         }
     }
