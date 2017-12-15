@@ -14,8 +14,8 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     var userSelf : SelfMode?
     var addedFriend : [User]?
     var preparedRestList: [Restaurant]?
-    var locationManager: CLLocationManager?
-    var userLocation: CLLocation?
+//    let locationManager = CLLocationManager()
+//    var userLocation: CLLocation?
     @IBOutlet weak var tableView: UITableView!
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,15 +26,16 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRestCell", for: indexPath) as! SelectRestCell
         cell.name.text = preparedRestList?[indexPath.row].name
         cell.category.text = preparedRestList?[indexPath.row].categories.joined(separator: ", ")
-        cell.rating.text = "\(String(describing: preparedRestList?[indexPath.row].rating))"
+        let rating = preparedRestList?[indexPath.row].rating
+        cell.rating.text = "\(rating!)"
         cell.cost.text = preparedRestList?[indexPath.row].price
         cell.address.text = preparedRestList?[indexPath.row].address
         cell.phone.text = preparedRestList?[indexPath.row].phone
-        let latitude = preparedRestList?[indexPath.row].latitude
-        let longitude = preparedRestList?[indexPath.row].longitude
-        let restLoc = CLLocation(latitude: latitude!, longitude: longitude!)
-        let distance = restLoc.distance(from: userLocation!)
-        cell.distance.text = String(distance)
+//        let latitude = preparedRestList?[indexPath.row].latitude
+//        let longitude = preparedRestList?[indexPath.row].longitude
+//        let restLoc = CLLocation(latitude: latitude!, longitude: longitude!)
+//        let distance = restLoc.distance(from: userLocation!)
+//        cell.distance.text = String(distance)
         if let url = URL(string: (preparedRestList?[indexPath.row].image_url)!) {
             getDataFromUrl(url: url) { data, response, error in
                 guard let data = data, error == nil else { return }
@@ -66,22 +67,16 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
         // Do any additional setup after loading the view.
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        determineMyCurrentLocation()
-    }
-    
-    func determineMyCurrentLocation() {
-        locationManager = CLLocationManager()
-        locationManager!.delegate = self
-        locationManager!.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager!.requestAlwaysAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager!.startUpdatingLocation()
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        locationManager.requestAlwaysAuthorization()
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.startUpdatingLocation()
+//        }
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,22 +84,50 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        userLocation = locations[0] as CLLocation
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        
-        // manager.stopUpdatingLocation()
-        
-        print("user latitude = \(userLocation!.coordinate.latitude)")
-        print("user longitude = \(userLocation!.coordinate.longitude)")
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        if let location = locations.first {
+//            userLocation = location
+//            print(location.coordinate)
+//        }
+//    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         print("Error \(error)")
     }
 
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if(status == CLAuthorizationStatus.denied) {
+            showLocationDisabledPopUp()
+        }
+    }
+    
+    @IBAction func randomSelectForUser(_ sender: UIButton) {
+        if let restList = preparedRestList {
+            let rand = Int(arc4random_uniform(UInt32(restList.count)))
+            let chosenOne = restList[rand]
+            preparedRestList = [chosenOne]
+        }
+        tableView.reloadData()
+        
+    }
+    // Show the popup to the user if we have been deined access
+    func showLocationDisabledPopUp() {
+        let alertController = UIAlertController(title: "Background Location Access Disabled",
+                                                message: "In order for later usage we need your location",
+                                                preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+            if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        alertController.addAction(openAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
 }
