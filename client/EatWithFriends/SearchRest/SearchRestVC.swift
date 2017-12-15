@@ -57,10 +57,13 @@ class SearchRestVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            if !restSelected.contains(restListString![indexPath.row]) {
-                restSelected.append(restListString![indexPath.row])
-            }
             let currentCell = tableView.cellForRow(at: indexPath) as! RestaurantCell
+            if !restSelected.contains(currentCell.label.text!) {
+                restSelected.append(currentCell.label.text!)
+            }
+            
+            
+            
             currentCell.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
         }
     }

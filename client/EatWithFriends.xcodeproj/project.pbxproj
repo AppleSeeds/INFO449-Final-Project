@@ -12,6 +12,7 @@
 		0206E59B1FDE4560005D317B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59A1FDE4560005D317B /* UserModel.swift */; };
 		0206E59E1FDE4E54005D317B /* SearchRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59D1FDE4E54005D317B /* SearchRestVC.swift */; };
 		0206E5A01FDE4F66005D317B /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0206E59F1FDE4F66005D317B /* RestaurantCell.swift */; };
+		02101E741FE3830C00084698 /* FriendInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02101E731FE3830C00084698 /* FriendInfoCell.swift */; };
 		021179BE1FDFC3F600F213B1 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021179BD1FDFC3F600F213B1 /* RestaurantModel.swift */; };
 		0286A3551FDFEBFC00329D46 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */; };
 		0286A3581FE0B66300329D46 /* SelectRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286A3571FE0B66300329D46 /* SelectRestViewController.swift */; };
@@ -52,6 +53,7 @@
 		0206E59A1FDE4560005D317B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0206E59D1FDE4E54005D317B /* SearchRestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestVC.swift; sourceTree = "<group>"; };
 		0206E59F1FDE4F66005D317B /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		02101E731FE3830C00084698 /* FriendInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInfoCell.swift; sourceTree = "<group>"; };
 		021179BD1FDFC3F600F213B1 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		0286A3541FDFEBFC00329D46 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		0286A3571FE0B66300329D46 /* SelectRestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRestViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		0286A35F1FE121FC00329D46 /* FriendPersonal */ = {
 			isa = PBXGroup;
 			children = (
+				02101E731FE3830C00084698 /* FriendInfoCell.swift */,
 				0286A3601FE1222D00329D46 /* FriendPersonalVC.swift */,
 			);
 			path = FriendPersonal;
@@ -450,6 +453,7 @@
 				F07426BA1FD58EFF00E69937 /* FriendsCell.swift in Sources */,
 				F077A6CF1FD53D690002A377 /* FriendsVC.swift in Sources */,
 				37E582791FDBB9DF00B61E86 /* LoginViewController.swift in Sources */,
+				02101E741FE3830C00084698 /* FriendInfoCell.swift in Sources */,
 				F08F1AFC1FC81B6200E005EC /* EatWithFriends.xcdatamodeld in Sources */,
 				0286A3551FDFEBFC00329D46 /* AddFriendViewController.swift in Sources */,
 				029145811FDF82B700FF400E /* SelectionVC.swift in Sources */,

@@ -56,10 +56,10 @@ class SearchFoodVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            if !foodSelected.contains(foodList[indexPath.row]) {
-                foodSelected.append(foodList[indexPath.row])
-            }
             let currentCell = tableView.cellForRow(at: indexPath) as! FoodCell
+            if !foodSelected.contains(currentCell.foodName.text!) {
+                foodSelected.append(currentCell.foodName.text!)
+            }
             currentCell.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
         }
     }
