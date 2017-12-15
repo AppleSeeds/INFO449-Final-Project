@@ -24,6 +24,8 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBAction func AddFriend(_ sender: UIButton) {
         let score = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newfriendvc") as! AddFriendViewController
         score.modalPresentationStyle = .popover
+        score.userSelf = self.userSelf
+        score.friendVC = self
         if let pop = score.popoverPresentationController {
             pop.delegate = self
             pop.permittedArrowDirections = .up
@@ -35,6 +37,12 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
+    }
+    
+    func reloadData() {
+        self.friendNameList = []
+        getNames(users: self.friends!)
+        tableView.reloadData()
     }
     
     // Not implemented yet
@@ -103,7 +111,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         getNames(users: self.friends!)
         tableView.dataSource = self
         tableView.delegate = self
-        
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
         // Do any additional setup after loading the view.

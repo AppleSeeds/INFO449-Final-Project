@@ -11,9 +11,9 @@ import GoogleSignIn
 class PersonalVC: UIViewController{
     var welcomeText = ""
 
-    
     // Important! Check out SelfModel
     var userSelf: SelfMode?  // get user data from this!!!! add info to userSelf before it can be patched.
+    
     var restList = [Restaurant]()
     var restSelected = [String]()
     var restFullList = [Restaurant]()
@@ -100,26 +100,36 @@ class PersonalVC: UIViewController{
         appDelegate.window?.rootViewController = logOutNextScreen
     }
     
+    private func restListToStringList(restList: [Restaurant]) -> [String] {
+        var result = [String]()
+        for rest in restList {
+            result.append(rest.name)
+        }
+        return result
+    }
+    
     //function executed when submit button clicked
     @objc func patchInfo(){
         userData()
+        let restLikedString = restListToStringList(restList: (userSelf?.restLiked)!)
+        let restHatedString = restListToStringList(restList: (userSelf?.restHated)!)
+        
         let param = [
-            "id": "XN2WrDf3qKrzNzC",
+            "id": userSelf?.id,
             "preference": [
                     [
                         "categories": [
-                            ["cat_like": [
-                                "New"
-                                ],
-                             "cat_dislike": [""]
+                            ["cat_like":
+                                userSelf?.foodLiked,
+                             "cat_dislike": userSelf?.foodHated
                             ]
                         ],
                         "restaurants":[
-                            ["res_like": [""],
+                            ["res_like": restLikedString,
                              "res_like_id": [
                                 ""
                                 ],
-                             "res_dislike": [""],
+                             "res_dislike": restHatedString,
                              "res_dislike_id": [
                                 ""
                                 ]
@@ -128,7 +138,7 @@ class PersonalVC: UIViewController{
                     ]
             ]
         ] as [String: Any]
-        let userUrl = "https://info449.com/users-info449"
+        let userUrl = "https://info449.com/users-info449" + "/" + (userSelf?.id)!
         guard let url = URL(string: userUrl) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"

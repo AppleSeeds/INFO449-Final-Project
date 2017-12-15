@@ -52,11 +52,6 @@ class SelfMode {
         fetchedFriend.append(B)
         fetchedFriend.append(C)
         fetchedFriend.append(D)
-
-        foodLiked.append("Chinese")
-        foodHated.append("Japanese")
-        restLiked.append(Restaurant(name: "Test1", image_url: "", categories: [], rating: 1, price: "", address: ",", phone: "", latitude: 1.1, longitude: 1.1))
-        restHated.append(Restaurant(name: "Test2", image_url: "", categories: [], rating: 1, price: "", address: ",", phone: "", latitude: 1.1, longitude: 1.1))
     }
 
     func getFetchedFriend() -> [User] {
@@ -132,17 +127,17 @@ class SelfMode {
             let restDic = resObj[0] as! [String: [String]]
             let catDic = catObj[0] as! [String: [String]]
 
-            userCategoriesLiked = restDic["res_like"] as! [String]
-            userCategoriesHated = restDic["res_dislike"] as! [String]
+            userRestLikedString = restDic["res_like"] as! [String]
+            userRestHatedString = restDic["res_dislike"] as! [String]
             userCategoriesLiked = catDic["cat_like"] as! [String]
             userCategoriesHated = catDic["cat_dislike"] as! [String]
-
+            
             let userRestLiked = findRest(restString: userRestLikedString)
             let userRestHated = findRest(restString: userRestHatedString)
 
             let userObj = User(name: userName!, id: userId!, email: userEmail!, foodLiked: userCategoriesLiked, foodHated: userCategoriesHated, restLiked: userRestLiked, restHated: userRestHated, friends: userFriendListString!)
             allUsers.append(userObj)
-
+            
             if (userName == self.name && userId == self.id) {
                 isRegistered = true
                 self.fetchedFriendString = userFriendListString!
@@ -304,77 +299,4 @@ class SelfMode {
             }
         }.resume()
     }
-
-    // change data of existing user
-    // identifier to determine change preference or change friendlist
-    
-    // pass param in forms like the example with whole list of friends and pereference;
-    func makeChanges (url: String, /*identifier: String,*/ param: [String:Any]) {
-
-//        if identifier == "friends" {
-//            let param = [
-//                "id": self.id,
-//                "friend_list": [
-//                    changes
-//                ]
-//            ] as [String: Any]
-//        } else {
-//            let param = [
-//                "id": self.id,
-//                "preference": [
-//                    changes
-//                        [
-//                            "categories": [
-//                                ["cat_like":[
-//                                    ""
-//                                    ],
-//                                 "cat_dislike":[
-//                                    ""
-//                                    ]]
-//                            ],
-//                            "restaurants":[
-//                                ["res_like": [
-//                                    ""
-//                                    ],
-//                                 "res_like_id": [
-//                                    ""
-//                                    ],
-//                                 "res_dislike": [
-//                                    ""
-//                                    ],
-//                                 "res_dislike_id": [
-//                                    ""
-//                                    ]
-//                                ]
-//                            ]
-//                        ]
-//                ]
-//            ] as [String: Any]
-//        }
-
-        guard let url = URL(string: url) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "PATCH"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: param) else { return }
-        request.httpBody = httpBody
-
-        let session = URLSession.shared
-        session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                } catch {
-                    print(error)
-                }
-            }
-        }.resume()
-    }
-
-//////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -151,6 +151,7 @@ class SelectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllFriends()
+        
         tableView.dataSource = self
         tableView.delegate = self
         getUserInfoAndSaveInPersonalVC()
