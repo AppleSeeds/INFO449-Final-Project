@@ -14,29 +14,30 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     var userSelf : SelfMode?
     var addedFriend : [User]?
     var preparedRestList: [Restaurant]?
+    var specRestList = [Restaurant]()
 //    let locationManager = CLLocationManager()
 //    var userLocation: CLLocation?
     @IBOutlet weak var tableView: UITableView!
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return preparedRestList!.count
+        return specRestList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRestCell", for: indexPath) as! SelectRestCell
-        cell.name.text = preparedRestList?[indexPath.row].name
-        cell.category.text = preparedRestList?[indexPath.row].categories.joined(separator: ", ")
-        let rating = preparedRestList?[indexPath.row].rating
-        cell.rating.text = "\(rating!)"
-        cell.cost.text = preparedRestList?[indexPath.row].price
-        cell.address.text = preparedRestList?[indexPath.row].address
-        cell.phone.text = preparedRestList?[indexPath.row].phone
+        cell.name.text = specRestList[indexPath.row].name
+        cell.category.text = specRestList[indexPath.row].categories.joined(separator: ", ")
+        let rating = specRestList[indexPath.row].rating
+        cell.rating.text = "\(rating)"
+        cell.cost.text = specRestList[indexPath.row].price
+        cell.address.text = specRestList[indexPath.row].address
+        cell.phone.text = specRestList[indexPath.row].phone
 //        let latitude = preparedRestList?[indexPath.row].latitude
 //        let longitude = preparedRestList?[indexPath.row].longitude
 //        let restLoc = CLLocation(latitude: latitude!, longitude: longitude!)
 //        let distance = restLoc.distance(from: userLocation!)
 //        cell.distance.text = String(distance)
-        if let url = URL(string: (preparedRestList?[indexPath.row].image_url)!) {
+        if let url = URL(string: (specRestList[indexPath.row].image_url)) {
             getDataFromUrl(url: url) { data, response, error in
                 guard let data = data, error == nil else { return }
                 print(response?.suggestedFilename ?? url.lastPathComponent)
@@ -61,6 +62,7 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         preparedRestList = userSelf?.getRestList()
+        generateSpecRest()
         tableView.reloadData()
         tableView.delegate = self
         tableView.dataSource = self
@@ -83,6 +85,76 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
         // Dispose of any resources that can be recreated.
     }
     
+    func generateSpecRest() {
+        var likeRestList = [String]()
+        var likeFlavorList = [String]()
+        var dislikeRestList = [String]()
+        var dislikeFlavorList = [String]()
+        
+        if let addedFriends = addedFriend {
+            for friend in addedFriends {
+                for restLike in friend.restLiked {
+                    if !dislikeRestList.contains(restLike.name) {
+                       likeRestList.append(restLike.name)
+                    }
+                }
+                for restHated in friend.restHated {
+                    dislikeRestList.append(restHated.name)
+                }
+                for foodHated in friend.foodHated {
+                    dislikeFlavorList.append(foodHated)
+                }
+                for foodLike in friend.foodLiked {
+                    if !dislikeFlavorList.contains(foodLike) {
+                        likeFlavorList.append(foodLike)
+                    }
+                }
+            }
+        }
+        if let userSelf = userSelf {
+            for foodHated in userSelf.foodHated {
+                dislikeFlavorList.append(foodHated)
+            }
+            for restHated in userSelf.restHated {
+                dislikeRestList.append(restHated.name)
+            }
+            for foodLike in userSelf.foodLiked {
+                if !dislikeFlavorList.contains(foodLike) {
+                    likeFlavorList.append(foodLike)
+                }
+            }
+            for restLike in userSelf.restLiked {
+                if !dislikeRestList.contains(restLike.name) {
+                    likeRestList.append(restLike.name)
+                }
+            }
+        }
+        if let restList = preparedRestList {
+            if likeFlavorList.count == 0 && likeRestList.count == 0 {
+                for rest in restList {
+                    if !dislikeRestList.contains(rest.name) {
+                        for cato in rest.categories {
+                            if !dislikeFlavorList.contains(cato) {
+                                specRestList.append(rest)
+                            }
+                        }
+                    }
+                }
+            } else {
+                for rest in restList {
+                    if likeRestList.contains(rest.name) {
+                        specRestList.append(rest)
+                    } else {
+                        for cato in rest.categories {
+                            if likeFlavorList.contains(cato) {
+                                specRestList.append(rest)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        if let location = locations.first {
@@ -91,43 +163,49 @@ class SelectRestViewController: UIViewController, UITableViewDataSource, UITable
 //        }
 //    }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
-        print("Error \(error)")
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if(status == CLAuthorizationStatus.denied) {
-            showLocationDisabledPopUp()
-        }
-    }
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+//    {
+//        print("Error \(error)")
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        if(status == CLAuthorizationStatus.denied) {
+//            showLocationDisabledPopUp()
+//        }
+//    }
     
     @IBAction func randomSelectForUser(_ sender: UIButton) {
         if let restList = preparedRestList {
-            let rand = Int(arc4random_uniform(UInt32(restList.count)))
-            let chosenOne = restList[rand]
-            preparedRestList = [chosenOne]
-        }
-        tableView.reloadData()
-        
-    }
-    // Show the popup to the user if we have been deined access
-    func showLocationDisabledPopUp() {
-        let alertController = UIAlertController(title: "Background Location Access Disabled",
-                                                message: "In order for later usage we need your location",
-                                                preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
-            if let url = URL(string: UIApplicationOpenSettingsURLString) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            if restList.count == 1 {
+                let alert = UIAlertController(title: "Wanna change to another restaurant?", message: "You have to go where we chose for u.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Fine.", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let rand = Int(arc4random_uniform(UInt32(restList.count)))
+                let chosenOne = restList[rand]
+                preparedRestList = [chosenOne]
+                tableView.reloadData()
             }
         }
-        alertController.addAction(openAction)
-        
-        self.present(alertController, animated: true, completion: nil)
     }
     
+    // Show the popup to the user if we have been deined access
+//    func showLocationDisabledPopUp() {
+//        let alertController = UIAlertController(title: "Background Location Access Disabled",
+//                                                message: "In order for later usage we need your location",
+//                                                preferredStyle: .alert)
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        alertController.addAction(cancelAction)
+//
+//        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+//            if let url = URL(string: UIApplicationOpenSettingsURLString) {
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            }
+//        }
+//        alertController.addAction(openAction)
+//
+//        self.present(alertController, animated: true, completion: nil)
+//    }
+//
 }
